@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J.A.R.V.I.S. | Browser Setup</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #00d2ff;
+        --secondary: #3a7bd5;
+        --bg: #050a14;
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --text: #e0e0e0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+        background: radial-gradient(circle at center, #102030 0%, #050a14 100%);
+      }
+
+      .container {
+        width: 90%;
+        max-width: 900px;
+        text-align: center;
+        padding: 40px;
+        border-radius: 20px;
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 210, 255, 0.1);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 1s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+        color: var(--primary);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+      }
+
+      p {
+        font-weight: 300;
+        color: #8899aa;
+        margin-bottom: 40px;
+        letter-spacing: 1px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        width: 100%;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .card:hover {
+        background: rgba(0, 210, 255, 0.1);
+        border-color: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+      }
+
+      .card img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+        filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.3));
+      }
+
+      .card span {
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+      }
+
+      .footer {
+        margin-top: 50px;
+        font-size: 0.8rem;
+        color: #556677;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .pulse {
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+        box-shadow: 0 0 10px var(--primary);
+        animation: pulse-ring 2s infinite;
+      }
+
+      @keyframes pulse-ring {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Identity Protocol</h1>
+      <p>
+        <span class="pulse"></span> System established. Login to these accounts
+        once to enable full J.A.R.V.I.S. automation.
+      </p>
+
+      <div class="grid">
+        <a href="https://accounts.google.com" target="_blank" class="card">
+          <img
+            src="https://www.gstatic.com/images/branding/product/2x/googleg_96dp.png"
+            alt="Google"
+          />
+          <span>Google / Mail</span>
+        </a>
+        <a href="https://www.youtube.com" target="_blank" class="card">
+          <img
+            src="https://www.gstatic.com/youtube/img/branding/favicon/main_favicon_128.png"
+            alt="YouTube"
+          />
+          <span>YouTube</span>
+        </a>
+        <a href="https://web.whatsapp.com" target="_blank" class="card">
+          <img
+            src="https://static.whatsapp.net/rsrc.php/v3/yP/r/r_oBs9SngZ9.png"
+            alt="WhatsApp"
+          />
+          <span>WhatsApp Web</span>
+        </a>
+        <a href="https://twitter.com/login" target="_blank" class="card">
+          <img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="X" />
+          <span>X / Twitter</span>
+        </a>
+        <a href="https://github.com/login" target="_blank" class="card">
+          <img
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            alt="GitHub"
+          />
+          <span>GitHub</span>
+        </a>
+        <a href="https://chat.openai.com" target="_blank" class="card">
+          <img
+            src="https://chat.openai.com/apple-touch-icon.png"
+            alt="ChatGPT"
+          />
+          <span>ChatGPT / AI</span>
+        </a>
+      </div>
+
+      <div class="footer">
+        Integrated Systems Terminal — Stark Industries &copy; 2026
+      </div>
+    </div>
+  </body>
+</html>

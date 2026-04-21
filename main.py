@@ -707,18 +707,19 @@ class JarvisLive:
                         sc = response.server_content
                         if sc.output_transcription and sc.output_transcription.text:
                             txt = _clean_transcript(sc.output_transcription.text)
-                            if txt: out_buf.append(txt)
+                            if txt:
+                                out_buf.append(txt)
+                                self.ui.stream_log(f"Jarvis: {txt}")
+
                         if sc.input_transcription and sc.input_transcription.text:
                             txt = _clean_transcript(sc.input_transcription.text)
-                            if txt: in_buf.append(txt)
+                            if txt: 
+                                in_buf.append(txt)
+                                self.ui.stream_log(f"You: {txt}")
 
                         if sc.turn_complete:
                             if self._turn_done_event: self._turn_done_event.set()
-                            full_in = " ".join(in_buf).strip()
-                            if full_in: self.ui.write_log(f"You: {full_in}")
                             in_buf = []
-                            full_out = " ".join(out_buf).strip()
-                            if full_out: self.ui.write_log(f"Jarvis: {full_out}")
                             out_buf = []
 
                     if response.tool_call:

@@ -985,6 +985,44 @@ class ChatWidget(QWidget):
 
         return msg_lbl
 
+    def stream_log(self, text: str):
+        """Append text to the last bubble if it belongs to the same tag, or create new."""
+        tl = text.lower()
+        if tl.startswith("you:"):
+            tag = "you"
+            content = text[4:].strip()
+        elif tl.startswith("jarvis:") or tl.startswith("ai:"):
+            tag = "ai"
+            content = text.split(":", 1)[1].strip() if ":" in text else text
+        else:
+            tag = "sys"
+            content = text
+
+        # Find last bubble with same tag
+        # self._msg_lay.count() - 1 is the stretch.
+        # So last real widget is self._msg_lay.count() - 2
+        last_idx = self._msg_lay.count() - 2
+        if last_idx >= 0:
+            last_item = self._msg_lay.itemAt(last_idx)
+            if last_item and last_item.widget():
+                last_bubble = last_item.widget()
+                # Store tag metadata in the widget
+                if getattr(last_bubble, "_tag", None) == tag:
+                    # Update existing label
+                    msg_lbl = last_bubble.findChild(QLabel)
+                    if msg_lbl:
+                        current = msg_lbl.text()
+                        msg_lbl.setText(current + " " + content if current else content)
+                        # Scroll to bottom
+                        QTimer.singleShot(20, lambda: self._scroll.verticalScrollBar().setValue(
+                            self._scroll.verticalScrollBar().maximum()))
+                        return
+
+        # Create new bubble if tag changed or no bubble exists
+        lbl = self._add_bubble(content, tag)
+        lbl.setText(content)
+        lbl.parentWidget()._tag = tag # Track tag for next stream
+
     # ── public typing-queue API (same as original) ────────────────────────────
 
     def write_log(self, text: str):
@@ -1520,6 +1558,7 @@ class JarvisUI(QMainWindow):
 
     # Qt signal for thread-safe log updates
     _log_signal         = pyqtSignal(str)
+    _stream_signal      = pyqtSignal(str)
     _state_signal       = pyqtSignal(str)
     _camera_signal      = pyqtSignal(bytes, int, int)
     _gesture_signal     = pyqtSignal(str)
@@ -1580,6 +1619,7 @@ class JarvisUI(QMainWindow):
 
         # ── Signals (thread-safe bridge) ──────────────────────────────────────
         self._log_signal.connect(self._on_log_signal)
+        self._stream_signal.connect(self._on_stream_signal)
         self._state_signal.connect(self._on_state_signal)
         self._camera_signal.connect(self._on_camera_signal)
         self._gesture_signal.connect(self._cam_widget.show_gesture)
@@ -1845,7 +1885,7 @@ class JarvisUI(QMainWindow):
     # ─────────────────────────────────────────────────────────────────────────
 
     def write_log(self, text: str):
-        """Thread-safe — callable from any thread."""
+        """Thread-safe — adds a new log entry with typewriter effect."""
         tl = text.lower()
         if tl.startswith("you:"):
             self.set_state("PROCESSING")
@@ -1853,8 +1893,15 @@ class JarvisUI(QMainWindow):
             self.set_state("SPEAKING")
         self._log_signal.emit(text)
 
+    def stream_log(self, text: str):
+        """Thread-safe — appends text to the last bubble immediately."""
+        self._stream_signal.emit(text)
+
     def _on_log_signal(self, text: str):
         self._chat.write_log(text)
+
+    def _on_stream_signal(self, text: str):
+        self._chat.stream_log(text)
 
     # ─────────────────────────────────────────────────────────────────────────
     #  ORIGINAL PRESERVED: start_speaking / stop_speaking

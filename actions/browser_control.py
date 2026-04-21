@@ -33,6 +33,9 @@ from playwright.async_api import (
 
 # ── Platform ──────────────────────────────────────────────────────────────────
 _OS = platform.system()   # "Windows" | "Darwin" | "Linux"
+_BASE_DIR = Path(__file__).resolve().parent.parent
+DASHBOARD_PATH = _BASE_DIR / "assets" / "html" / "jarvis_dashboard.html"
+DASHBOARD_URL = f"file:///{str(DASHBOARD_PATH).replace('\\', '/')}"
 
 
 # ── URL normalizer ────────────────────────────────────────────────────────────
@@ -449,139 +452,112 @@ class _BrowserSession:
 
     async def _launch(self):
         """
-        Tarayıcıyı gerçek kullanıcı profiliyle başlatır.
-        Context zaten açıksa hiçbir şey yapmaz.
+        Tarayıcıyı başlatır. Önce gerçek kullanıcı profilini dener, kilitliyse Jarvis profiline geçer.
         """
-        if self._context is not None:
-            return
+        # Check if already connected and alive
+        if self._context is not None and self._browser is not None:
+            try:
+                # If the user closed the window, is_connected() will be False
+                if self._browser.is_connected():
+                    return
+                else:
+                    print("[Browser] Detected disconnected browser. Re-launching...")
+                    await self.close()
+            except Exception:
+                await self.close()
 
         if self._spec is None:
-            raise RuntimeError(
-                f"'{self.browser_name}' bu platformda ({_OS}) desteklenmiyor."
-            )
+            raise RuntimeError(f"'{self.browser_name}' not supported on {_OS}.")
 
         engine_name = self._spec["engine"]
         exe         = self._spec["exe"]
         channel     = self._spec["channel"]
         engine_obj  = getattr(self._pw, engine_name)
 
-        # ── Firefox ───────────────────────────────────────────────────────────
-        if engine_name == "firefox":
-            profile = _firefox_profile_dir() or str(
-                Path.home() / ".jarvis_profiles" / "firefox"
-            )
-            kwargs: dict = {
-                "headless":    False,
-                "slow_mo":     0,
-                "viewport":    None,
-                "no_viewport": True,
-            }
-            if exe:
-                kwargs["executable_path"] = exe
-            try:
-                self._context = await engine_obj.launch_persistent_context(profile, **kwargs)
-            except Exception as e:
-                print(f"[Browser] Firefox real profile failed ({e}), using JARVIS profile")
-                jarvis = str(Path.home() / ".jarvis_profiles" / "firefox_jarvis")
-                Path(jarvis).mkdir(parents=True, exist_ok=True)
-                self._context = await engine_obj.launch_persistent_context(jarvis, **kwargs)
+        # Jarvis Profile path
+        jarvis_profile = str(Path.home() / ".jarvis_profiles" / self.browser_name)
+        Path(jarvis_profile).mkdir(parents=True, exist_ok=True)
 
-            await asyncio.sleep(0.5)  # let the browser settle
-            # Always open a dedicated JARVIS tab instead of grabbing pages[0],
-            # which may already be about:blank or a stale restored tab.
-            self._page = await self._context.new_page()
-            print(f"[Browser] ✅ Firefox launched")
-            return
-
-        # ── Safari (webkit) ───────────────────────────────────────────────────
-        if engine_name == "webkit":
-            safari_profile = str(Path.home() / ".jarvis_profiles" / "safari")
-            Path(safari_profile).mkdir(parents=True, exist_ok=True)
-            kwargs = {
-                "headless":    False,
-                "slow_mo":     0,
-                "viewport":    None,
-                "no_viewport": True,
-            }
-            self._context = await engine_obj.launch_persistent_context(safari_profile, **kwargs)
-            await asyncio.sleep(0.5)
-            self._page = await self._context.new_page()
-            print(f"[Browser] ✅ Safari launched")
-            return
-
-        # ── Chromium tabanlı ──────────────────────────────────────────────────
-        profile = _real_profile_dir(self.browser_name)
-
+        # Common kwargs
         kwargs = {
             "headless":    False,
             "slow_mo":     0,
             "viewport":    None,
             "no_viewport": True,
-            "args": [
+            "timeout":     10000, # Faster timeout for initial check
+        }
+
+        # ── Chromium specific args ────────────────────────────────────────────
+        if engine_name == "chromium":
+            kwargs["args"] = [
                 "--start-maximized",
                 "--disable-blink-features=AutomationControlled",
                 "--no-first-run",
                 "--disable-default-apps",
                 "--no-default-browser-check",
-                "--remote-allow-origins=*",
-            ],
-        }
+            ]
+            if exe:
+                kwargs["executable_path"] = exe
+            elif channel:
+                kwargs["channel"] = channel
 
-        if exe:
-            kwargs["executable_path"] = exe
-        elif channel:
-            kwargs["channel"] = channel
+            # 1) Try real user profile first
+            profile = _real_profile_dir(self.browser_name)
+            if profile:
+                try:
+                    print(f"[Browser] Checking for {self.browser_name} real profile lock...")
+                    self._context = await engine_obj.launch_persistent_context(profile, **kwargs)
+                    print(f"[Browser] ✅ Connected to Real Profile.")
+                    return
+                except Exception as e:
+                    print(f"[Browser] ⚠️ Real profile lock detected: Switching to JARVIS IDENTITY.")
 
-        label = (
-            f"{self.browser_name}"
-            + (f"/{channel}" if channel else "")
-            + (f" @ {exe}" if exe else "")
-        )
+            # 2) Fallback to JARVIS profile
+            self._also_open_in_real = True
+            try:
+                self._context = await engine_obj.launch_persistent_context(jarvis_profile, **kwargs)
+                print(f"[Browser] ✅ J.A.R.V.I.S Identity Window Ready.")
+                return
+            except Exception as e2:
+                raise RuntimeError(f"Could not launch browser context: {e2}")
 
-        # Guard: only run launch logic once per session lifetime
-        if self._launched:
-            return
-        self._launched = True
-
-        # 1) Try real user profile first
+        # ── Non-Chromium Fallback (Firefox / Safari) ──────────────────────────
         try:
-            self._context = await engine_obj.launch_persistent_context(profile, **kwargs)
-            await asyncio.sleep(0.5)
-            self._page = await self._context.new_page()
-            print(f"[Browser] Launched [{label}] with real profile")
-            return
-        except Exception:
-            print(f"[Browser] Real profile locked for {label} (Chrome already running).")
-
-        # 2) Real profile locked — launch JARVIS dedicated profile.
-        #    JARVIS gets its own Chrome window with full Playwright control:
-        #    click / type / scroll / smart_click / get_text all work.
-        #    _also_open_in_real=True means go_to/search ALSO send the URL to
-        #    the user's existing Chrome via webbrowser.open().
-        jarvis_profile = str(Path.home() / ".jarvis_profiles" / self.browser_name)
-        Path(jarvis_profile).mkdir(parents=True, exist_ok=True)
-        print(f"[Browser] Using dedicated JARVIS profile for full control.")
-        self._also_open_in_real = True
-
-        try:
-            self._context = await engine_obj.launch_persistent_context(
-                jarvis_profile, **kwargs
-            )
-            await asyncio.sleep(0.5)
-            self._page = await self._context.new_page()
-            print(f"[Browser] JARVIS profile ready — full Playwright control active.")
-        except Exception as e2:
-            raise RuntimeError(f"Could not launch {self.browser_name}: {e2}") from e2
+            self._context = await engine_obj.launch_persistent_context(jarvis_profile, **kwargs)
+        except Exception as e:
+            raise RuntimeError(f"Fallback launch failed: {e}")
 
 
 
     # ── Sayfa erişimi ─────────────────────────────────────────────────────────
 
     async def _get_page(self) -> Page:
+        # Check if we are in setup mode (DASHBOARD_URL is the target)
+        # We can detect this if the caller is the 'setup' action but _launch is handled at session level.
+        # Let's just make _launch smarter.
         await self._launch()
+        if self._context is None:
+            raise RuntimeError("Browser context initialization failed.")
+
+        # Ensure we have a valid page
         if self._page is None or self._page.is_closed():
-            self._page = await self._context.new_page()
-            await asyncio.sleep(0.2)
+            pages = self._context.pages
+            if pages:
+                self._page = pages[-1]
+            else:
+                self._page = await self._context.new_page()
+
+        # If page is blank, force load the dashboard
+        curr_url = self._page.url
+        if curr_url in ("about:blank", "", "about:newtab"):
+            try:
+                # Use absolute path with file:/// properly for Windows
+                target = DASHBOARD_URL
+                print(f"[Browser] Redirecting blank tab to Identity Dashboard...")
+                await self._page.goto(target, timeout=15000)
+            except Exception as e:
+                print(f"[Browser] Dashboard load error: {e}")
+        
         return self._page
 
 
@@ -601,7 +577,7 @@ class _BrowserSession:
             import webbrowser
             webbrowser.open(url)
 
-        page     = await self._get_page()
+        page     = await self._get_page(target_url=url)
         prev_url = page.url
 
         async def _do_goto(p: Page) -> str:
@@ -893,7 +869,7 @@ def browser_control(
 ) -> str:
     """
     Desteklenen action'lar:
-        go_to, search, click, type, scroll, fill_form,
+        go_to, search, setup, click, type, scroll, fill_form,
         smart_click, smart_type, get_text, get_url, press,
         new_tab, close_tab, screenshot, back, forward, reload,
         switch, list_browsers, close, close_all
@@ -933,6 +909,8 @@ def browser_control(
     try:
         if action == "go_to":
             result = sess.run(sess.go_to(params.get("url", "")))
+        elif action == "setup":
+            result = sess.run(sess.go_to(DASHBOARD_URL))
         elif action == "search":
             result = sess.run(sess.search(params.get("query", ""), params.get("engine", "google")))
         elif action == "click":
