@@ -453,6 +453,10 @@ class BootHUDWidget(QWidget):
         super().__init__(parent)
         self._angle = 0
         self._percent = 0.0
+        self._target_percent = 0.0
+        self._tick_counter = 0
+        self._progress_steps = [0.0, 10.0, 15.0, 22.0, 29.0, 51.0, 79.0, 87.0, 91.0, 95.0, 99.0]
+        self._step_idx = 0
         self._status_idx = 0
         self._statuses = [
             "INITIALISING SYSTEM CORE...",
@@ -470,13 +474,28 @@ class BootHUDWidget(QWidget):
         self._timer.start(16)
 
     def set_progress(self, p: float):
-        self._percent = min(100.0, max(0.0, p))
+        self._target_percent = min(100.0, max(0.0, float(p)))
+        self._percent = self._target_percent
         self._status_idx = int((self._percent / 100.0) * (len(self._statuses) - 1))
         if self._percent >= 100.0:
             self.ready_signal.emit()
 
     def _update_anim(self):
         self._angle = (self._angle + 2) % 360
+        self._tick_counter += 1
+
+        # Simulate dynamic progress if we haven't reached 100 externally
+        if self._percent < 100.0:
+            if self._tick_counter % 15 == 0 and random.random() < 0.7:
+                if self._step_idx < len(self._progress_steps) - 1:
+                    self._step_idx += 1
+                    self._target_percent = self._progress_steps[self._step_idx]
+
+            # Smoothly catch up to the target progress
+            if self._percent < self._target_percent:
+                self._percent += min(2.0, self._target_percent - self._percent)
+                self._status_idx = int((self._percent / 100.0) * (len(self._statuses) - 1))
+
         self.update()
 
     def paintEvent(self, event):
