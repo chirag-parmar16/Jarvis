@@ -224,6 +224,16 @@ class VisionManager:
         self._pending_count     = 0
         self._notified_ready    = False
 
+        self._latest_jpeg       = None
+        self._jpeg_lock         = threading.Lock()
+        self._jpeg_counter      = 0
+
+    def get_latest_jpeg(self) -> bytes | None:
+        """Returns the most recent camera frame as JPEG bytes, or None."""
+        with self._jpeg_lock:
+            return self._latest_jpeg
+
+
     def start(self):
         if self._running:
             return
@@ -288,6 +298,18 @@ class VisionManager:
                 if self._ui is not None:
                     try:
                         self._ui.update_camera_frame(frame.tobytes(), w, h)
+                    except Exception:
+                        pass
+
+                # Encode a low-res JPEG for the LLM Live capture (throttle to ~8 FPS to save CPU)
+                self._jpeg_counter += 1
+                if self._jpeg_counter % 3 == 0:
+                    try:
+                        resized = cv2.resize(frame, (640, int(640 * (h/w))))
+                        ret_enc, buf = cv2.imencode('.jpg', resized, [cv2.IMWRITE_JPEG_QUALITY, 50])
+                        if ret_enc:
+                            with self._jpeg_lock:
+                                self._latest_jpeg = buf.tobytes()
                     except Exception:
                         pass
 

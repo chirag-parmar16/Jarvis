@@ -172,11 +172,9 @@ TOOL_DECLARATIONS = [
     {
         "name": "screen_process",
         "description": (
-            "Captures and analyzes the screen or webcam image. "
-            "MUST be called when user asks what is on screen, what you see, "
-            "analyze my screen, look at camera, etc. "
-            "You have NO visual ability without this tool. "
-            "After calling this tool, stay SILENT — the vision module speaks directly."
+            "Captures a screenshot of the computer desktop. "
+            "MUST be called when user asks what is on screen, analyze my screen, etc. "
+            "Do NOT use this for the camera (you can already natively see the webcam stream)."
         ),
         "parameters": {
             "type": "OBJECT",
@@ -428,8 +426,9 @@ TOOL_DECLARATIONS = [
 
 class JarvisLive:
 
-    def __init__(self, ui: JarvisUI):
+    def __init__(self, ui: JarvisUI, vision_manager=None):
         self.ui             = ui
+        self.vision_manager = vision_manager
         self.session        = None
         self.audio_in_queue = None
         self.out_queue      = None
@@ -565,13 +564,16 @@ class JarvisLive:
                 result = r or "Done."
 
             elif name == "screen_process":
-                threading.Thread(
-                    target=screen_process,
-                    kwargs={"parameters": args, "response": None,
-                            "player": self.ui, "session_memory": None},
-                    daemon=True
-                ).start()
-                result = "Vision module activated. Stay completely silent — vision module will speak directly."
+                import actions.screen_processor as sp
+                r = await loop.run_in_executor(None, lambda: sp.screen_process(parameters=args))
+                if isinstance(r, dict) and "data" in r:
+                    try:
+                        self.out_queue.put_nowait(r)
+                        result = "Screenshot captured! Now analyze it using the image just provided."
+                    except Exception as e:
+                        result = f"Failed to push screenshot: {e}"
+                else:
+                    result = r or "Camera is already streaming natively."
 
             elif name == "computer_settings":
                 r = await loop.run_in_executor(None, lambda: computer_settings(parameters=args, response=None, player=self.ui))
@@ -642,6 +644,19 @@ class JarvisLive:
         while True:
             msg = await self.out_queue.get()
             await self.session.send_realtime_input(media=msg)
+
+    async def _send_video_frames(self):
+        print("[JARVIS] 📷 Video stream started")
+        while True:
+            if self.vision_manager and self.session:
+                jpeg = self.vision_manager.get_latest_jpeg()
+                if jpeg:
+                    try:
+                        self.out_queue.put_nowait({"data": jpeg, "mime_type": "image/jpeg"})
+                    except asyncio.QueueFull:
+                        pass
+            await asyncio.sleep(1.0)
+
 
     async def _listen_audio(self):
         print("[JARVIS] 🎤 Mic started")
@@ -797,6 +812,7 @@ class JarvisLive:
 
                     tg.create_task(self._send_realtime())
                     tg.create_task(self._listen_audio())
+                    tg.create_task(self._send_video_frames())
                     tg.create_task(self._receive_audio())
                     tg.create_task(self._play_audio())
 
@@ -852,7 +868,7 @@ def main():
 
     def runner():
         ui.wait_for_api_key()
-        jarvis = JarvisLive(ui)
+        jarvis = JarvisLive(ui, vision_manager=_vm if '_vm' in locals() else None)
         try:
             asyncio.run(jarvis.run())
         except KeyboardInterrupt:
