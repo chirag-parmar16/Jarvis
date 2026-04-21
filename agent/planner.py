@@ -4,14 +4,7 @@ import sys
 from pathlib import Path
 
 
-def get_base_dir() -> Path:
-    if getattr(sys, "frozen", False):
-        return Path(sys.executable).parent
-    return Path(__file__).resolve().parent.parent
-
-
-BASE_DIR        = get_base_dir()
-API_CONFIG_PATH = BASE_DIR / "config" / "api_keys.json"
+import memory.config_manager as config_manager
 
 
 PLANNER_PROMPT = """You are the planning module of MARK XXV, a personal AI assistant.
@@ -166,15 +159,12 @@ OUTPUT — return ONLY valid JSON, no markdown, no explanation, no code blocks:
 """
 
 
-def _get_api_key() -> str:
-    with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)["gemini_api_key"]
 
 
 def create_plan(goal: str, context: str = "") -> dict:
     import google.generativeai as genai
 
-    genai.configure(api_key=_get_api_key())
+    genai.configure(api_key=config_manager.get_gemini_key())
     model = genai.GenerativeModel(
         model_name="gemini-2.5-flash-lite",
         system_instruction=PLANNER_PROMPT
@@ -234,7 +224,7 @@ def _fallback_plan(goal: str) -> dict:
 def replan(goal: str, completed_steps: list, failed_step: dict, error: str) -> dict:
     import google.generativeai as genai
 
-    genai.configure(api_key=_get_api_key())
+    genai.configure(api_key=config_manager.get_gemini_key())
     model = genai.GenerativeModel(
         model_name="gemini-2.5-flash",
         system_instruction=PLANNER_PROMPT

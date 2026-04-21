@@ -22,28 +22,13 @@ try:
 except ImportError:
     _PYPERCLIP = False
 
-def _base_dir() -> Path:
-    if getattr(sys, "frozen", False):
-        return Path(sys.executable).parent
-    return Path(__file__).resolve().parent.parent
-
-
-_BASE         = _base_dir()
-_CONFIG_PATH  = _BASE / "config" / "api_keys.json"
-_MEMORY_PATH  = _BASE / "memory" / "long_term.json"
-
-def _load_config() -> dict:
-    try:
-        return json.loads(_CONFIG_PATH.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
+import memory.config_manager as config_manager
 
 def _get_os() -> str:
-    return _load_config().get("os_system", "windows").lower()
-
+    return config_manager.get_os_system().lower()
 
 def _get_api_key() -> str:
-    return _load_config().get("gemini_api_key", "")
+    return config_manager.get_gemini_key() or ""
 
 _SAFE_SCREENSHOT_ROOTS = (
     Path.home(),
@@ -148,6 +133,7 @@ def _type(text: str, interval: float = 0.03) -> str:
     pyautogui.typewrite(text, interval=interval)
     return f"Typed: {text[:60]}{'…' if len(text) > 60 else ''}"
 
+_MEMORY_PATH  = config_manager.BASE_DIR / "memory" / "long_term.json"
 
 def _smart_type(text: str, clear_first: bool = True) -> str:
     _require_pyautogui()

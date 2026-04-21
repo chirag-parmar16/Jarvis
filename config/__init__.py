@@ -1,16 +1,17 @@
 # config/__init__.py
-import json, os
-from pathlib import Path
-
-_CONFIG_PATH = Path(__file__).parent / "api_keys.json"
+import memory.config_manager as config_manager
 
 def get_config() -> dict:
-    with open(_CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+    """Legacy compatibility function. Try to use config_manager directly."""
+    return {
+        "os_system": config_manager.get_os_system(),
+        "gemini_api_key": config_manager.get_gemini_key(),
+        "camera_index": config_manager.get_config_value("camera_index", 0)
+    }
 
 def get_os() -> str:
     """Returns: 'windows' | 'mac' | 'linux'"""
-    return get_config().get("os_system", "windows").lower()
+    return config_manager.get_os_system().lower()
 
 def is_windows() -> bool: return get_os() == "windows"
 def is_mac()     -> bool: return get_os() == "mac"

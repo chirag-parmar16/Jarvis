@@ -17,15 +17,13 @@ except ImportError:
 _OS = platform.system()  # "Windows" | "Darwin" | "Linux"
 
 
-def _get_base_dir() -> Path:
-    if getattr(sys, "frozen", False):
-        return Path(sys.executable).parent
-    return Path(__file__).resolve().parent.parent
+import memory.config_manager as config_manager
 
 def _get_api_key() -> str:
-    path = _get_base_dir() / "config" / "api_keys.json"
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)["gemini_api_key"]
+    key = config_manager.get_gemini_key()
+    if not key:
+        raise RuntimeError("gemini_api_key not found in config.")
+    return key
     
 def _get_desktop() -> Path:
     if _OS == "Linux":

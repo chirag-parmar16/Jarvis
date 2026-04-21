@@ -12,19 +12,9 @@ from agent.planner       import create_plan, replan
 from agent.error_handler import analyze_error, generate_fix, ErrorDecision
 
 
-def get_base_dir() -> Path:
-    if getattr(sys, "frozen", False):
-        return Path(sys.executable).parent
-    return Path(__file__).resolve().parent.parent
+import memory.config_manager as config_manager
 
 
-BASE_DIR        = get_base_dir()
-API_CONFIG_PATH = BASE_DIR / "config" / "api_keys.json"
-
-
-def _get_api_key() -> str:
-    with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)["gemini_api_key"]
 
 def _run_generated_code(description: str, speak: Callable | None = None) -> str:
     import google.generativeai as genai
@@ -46,7 +36,7 @@ def _run_generated_code(description: str, speak: Callable | None = None) -> str:
         except Exception:
             pass
 
-    genai.configure(api_key=_get_api_key())
+    genai.configure(api_key=config_manager.get_gemini_key())
     model = genai.GenerativeModel(
         model_name="gemini-2.5-flash",
         system_instruction=(
@@ -129,7 +119,7 @@ def _inject_context(params: dict, tool: str, step_results: dict, goal: str = "")
     return params
 def _detect_language(text: str) -> str:
     import google.generativeai as genai
-    genai.configure(api_key=_get_api_key())
+    genai.configure(api_key=config_manager.get_gemini_key())
     model = genai.GenerativeModel("gemini-2.5-flash-lite")
     try:
         response = model.generate_content(
@@ -147,7 +137,7 @@ def _translate_to_goal_language(content: str, goal: str) -> str:
         return content
     try:
         import google.generativeai as genai
-        genai.configure(api_key=_get_api_key())
+        genai.configure(api_key=config_manager.get_gemini_key())
         model = genai.GenerativeModel("gemini-2.5-flash")
 
         target_lang = _detect_language(goal)

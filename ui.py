@@ -19,6 +19,7 @@ import os, json, time, math, random, threading, platform
 import sys
 from pathlib import Path
 from collections import deque
+import memory.config_manager as config_manager
 from icons import SVG_ICONS
 
 # ── PyQt6 ─────────────────────────────────────────────────────────────────────
@@ -65,8 +66,6 @@ def get_base_dir():
 
 
 BASE_DIR   = get_base_dir()
-CONFIG_DIR = BASE_DIR / "config"
-API_FILE   = CONFIG_DIR / "api_keys.json"
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1414,10 +1413,8 @@ class SetupDialog(QWidget):
             self._key_entry.setStyleSheet(self._key_entry.styleSheet() +
                                            f" border: 1px solid {C_RED};")
             return
-        os.makedirs(CONFIG_DIR, exist_ok=True)
-        with open(API_FILE, "w", encoding="utf-8") as f:
-            json.dump({"gemini_api_key": gemini,
-                       "os_system":      self._selected_os}, f, indent=4)
+        config_manager.save_api_keys(gemini)
+        config_manager.save_os_system(self._selected_os)
         self.done_signal.emit()
 
 
@@ -1894,13 +1891,7 @@ class JarvisUI(QMainWindow):
     # ─────────────────────────────────────────────────────────────────────────
 
     def _api_keys_exist(self) -> bool:
-        if not API_FILE.exists():
-            return False
-        try:
-            data = json.loads(API_FILE.read_text(encoding="utf-8"))
-            return bool(data.get("gemini_api_key")) and bool(data.get("os_system"))
-        except Exception:
-            return False
+        return config_manager.is_configured()
 
     def wait_for_api_key(self):
         while not self._api_key_ready:

@@ -12,14 +12,10 @@ def _base_dir() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
+import memory.config_manager as config_manager
+
 def _get_os() -> str:
-    try:
-        cfg = json.loads(
-            (_base_dir() / "config" / "api_keys.json").read_text(encoding="utf-8")
-        )
-        return cfg.get("os_system", "windows").lower()
-    except Exception:
-        return "windows"
+    return config_manager.get_os_system().lower()
 
 
 def _scripts_dir() -> Path:

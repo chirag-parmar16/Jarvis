@@ -8,7 +8,7 @@ import threading
 from pathlib import Path
 from datetime import datetime
 
-from config import get_os, is_windows, is_mac, is_linux
+import memory.config_manager as config_manager
 
 _KNOWN_APPIDS: dict[str, tuple[str, str]] = {
     "pubg":                ("578080",  "PUBG: Battlegrounds"),
@@ -54,8 +54,8 @@ _KNOWN_APPIDS: dict[str, tuple[str, str]] = {
 }
 
 def _find_steam_path() -> Path | None:
-    if is_windows(): return _find_steam_windows()
-    if is_mac():     return _find_steam_mac()
+    if config_manager.get_os_system() == "windows": return _find_steam_windows()
+    if config_manager.get_os_system() == "mac":     return _find_steam_mac()
     return _find_steam_linux()
 
 
@@ -112,15 +112,15 @@ def _find_steam_linux() -> Path | None:
 
 
 def _steam_exe(steam_path: Path) -> Path:
-    if is_windows(): return steam_path / "steam.exe"
-    if is_mac():     return Path("/Applications/Steam.app/Contents/MacOS/steam_osx")
+    if config_manager.get_os_system() == "windows": return steam_path / "steam.exe"
+    if config_manager.get_os_system() == "mac":     return Path("/Applications/Steam.app/Contents/MacOS/steam_osx")
     return steam_path / "steam.sh"
 
 
 def _launch_steam_url(exe: Path, url: str) -> None:
-    if is_mac():
+    if config_manager.get_os_system() == "mac":
         subprocess.Popen(["open", url])
-    elif is_linux():
+    elif config_manager.get_os_system() == "linux":
         subprocess.Popen(["xdg-open", url])
     else:
         subprocess.Popen([str(exe), url])
@@ -166,11 +166,11 @@ def _get_steam_games(steam_path: Path) -> list[dict]:
 
 def _is_steam_running() -> bool:
     try:
-        if is_windows():
+        if config_manager.get_os_system() == "windows":
             out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq steam.exe"],
                                  capture_output=True, text=True).stdout
             return "steam.exe" in out.lower()
-        proc = "steam_osx" if is_mac() else "steam"
+        proc = "steam_osx" if config_manager.get_os_system() == "mac" else "steam"
         return bool(subprocess.run(["pgrep", "-x", proc],
                                    capture_output=True, text=True).stdout.strip())
     except Exception:
@@ -447,7 +447,7 @@ def _ensure_steam_running(steam_path: Path) -> bool:
         return False
 
     print("[GameUpdater] 🚀 Steam başlatılıyor...")
-    if is_mac():
+    if config_manager.get_os_system() == "mac":
         subprocess.Popen(["open", "-a", "Steam"])
     else:
         subprocess.Popen([str(exe)])
@@ -457,7 +457,7 @@ def _ensure_steam_running(steam_path: Path) -> bool:
         if _is_steam_running():
             print("[GameUpdater] ✅ Steam çalışıyor")
             time.sleep(4)
-            if is_windows():
+            if config_manager.get_os_system() == "windows":
                 _handle_steam_profile_selection()
                 time.sleep(2)
             return True
@@ -595,7 +595,7 @@ def _install_steam_game(steam_path: Path, game_name: str = None,
     try:
         _launch_steam_url(exe, f"steam://install/{app_id}")
 
-        if is_windows():
+        if config_manager.get_os_system() == "windows":
             threading.Thread(
                 target=_handle_install_dialog,
                 args=(game_name or str(app_id),),
@@ -620,9 +620,9 @@ def _get_download_status(steam_path: Path) -> str:
 
 
 def _system_shutdown() -> None:
-    if is_windows():
+    if config_manager.get_os_system() == "windows":
         subprocess.run(["shutdown", "/s", "/t", "10"])
-    elif is_mac():
+    elif config_manager.get_os_system() == "mac":
         subprocess.run(["osascript", "-e", 'tell app "System Events" to shut down'])
     else:
         subprocess.run(["systemctl", "poweroff"])
@@ -658,8 +658,8 @@ def _watch_and_shutdown(steam_path: Path, speak=None,
 
 
 def _find_epic_exe() -> Path | None:
-    if is_windows(): return _find_epic_exe_windows()
-    if is_mac():     return _find_epic_exe_mac()
+    if config_manager.get_os_system() == "windows": return _find_epic_exe_windows()
+    if config_manager.get_os_system() == "mac":     return _find_epic_exe_mac()
     return _find_epic_exe_linux()
 
 
@@ -705,11 +705,11 @@ def _find_epic_exe_linux() -> Path | None:
 
 
 def _epic_manifests_path() -> Path | None:
-    if is_windows():
+    if config_manager.get_os_system() == "windows":
         p = Path(os.environ.get("PROGRAMDATA", "C:/ProgramData")) \
             / "Epic" / "EpicGamesLauncher" / "Data" / "Manifests"
         return p if p.exists() else None
-    if is_mac():
+    if config_manager.get_os_system() == "mac":
         p = Path.home() / "Library" / "Application Support" \
             / "Epic" / "EpicGamesLauncher" / "Data" / "Manifests"
         return p if p.exists() else None
@@ -734,13 +734,13 @@ def _get_epic_games() -> list[dict]:
 
 def _is_epic_running() -> bool:
     try:
-        if is_windows():
+        if config_manager.get_os_system() == "windows":
             out = subprocess.run(
                 ["tasklist", "/FI", "IMAGENAME eq EpicGamesLauncher.exe"],
                 capture_output=True, text=True
             ).stdout
             return "epicgameslauncher.exe" in out.lower()
-        proc = "EpicGamesLauncher" if is_mac() else "heroic"
+        proc = "EpicGamesLauncher" if config_manager.get_os_system() == "mac" else "heroic"
         return bool(subprocess.run(["pgrep", "-x", proc],
                                    capture_output=True, text=True).stdout.strip())
     except Exception:
@@ -757,9 +757,9 @@ def _update_epic_games(epic_exe: Path, game_name: str = None) -> str:
             return f"'{game_name}' not found in Epic."
         try:
             url = f"com.epicgames.launcher://apps/{matched[0]['id']}?action=launch&silent=true"
-            if is_mac():
+            if config_manager.get_os_system() == "mac":
                 subprocess.Popen(["open", url])
-            elif is_linux():
+            elif config_manager.get_os_system() == "linux":
                 subprocess.Popen([str(epic_exe), url] if epic_exe else ["xdg-open", url])
             else:
                 subprocess.Popen([str(epic_exe), url])
@@ -768,9 +768,9 @@ def _update_epic_games(epic_exe: Path, game_name: str = None) -> str:
             return f"Epic update failed: {e}"
     else:
         try:
-            if is_mac():
+            if config_manager.get_os_system() == "mac":
                 subprocess.Popen(["open", "-a", "Epic Games Launcher"])
-            elif is_linux():
+            elif config_manager.get_os_system() == "linux":
                 if epic_exe:
                     subprocess.Popen([str(epic_exe)])
                 else:
@@ -793,8 +793,8 @@ def _update_epic_games(epic_exe: Path, game_name: str = None) -> str:
             return f"Epic launch failed: {e}"
 
 def _schedule_daily_update(hour: int = 3, minute: int = 0) -> str:
-    if is_windows(): return _schedule_windows(hour, minute)
-    if is_mac():     return _schedule_mac(hour, minute)
+    if config_manager.get_os_system() == "windows": return _schedule_windows(hour, minute)
+    if config_manager.get_os_system() == "mac":     return _schedule_mac(hour, minute)
     return _schedule_linux(hour, minute)
 
 
@@ -867,14 +867,14 @@ def _schedule_linux(hour: int, minute: int) -> str:
 
 
 def _cancel_scheduled_update() -> str:
-    if is_windows():
+    if config_manager.get_os_system() == "windows":
         result = subprocess.run(
             ["schtasks", "/Delete", "/TN", "JARVIS_GameUpdater", "/F"],
             capture_output=True, text=True
         )
         return ("Scheduled update cancelled."
                 if result.returncode == 0 else "No scheduled update found.")
-    if is_mac():
+    if config_manager.get_os_system() == "mac":
         plist_path = Path.home() / "Library" / "LaunchAgents" / "com.jarvis.gameupdater.plist"
         if plist_path.exists():
             subprocess.run(["launchctl", "unload", str(plist_path)], capture_output=True)
@@ -894,7 +894,7 @@ def _cancel_scheduled_update() -> str:
 
 
 def _get_schedule_status() -> str:
-    if is_windows():
+    if config_manager.get_os_system() == "windows":
         result = subprocess.run(
             ["schtasks", "/Query", "/TN", "JARVIS_GameUpdater", "/FO", "LIST"],
             capture_output=True, text=True
@@ -906,7 +906,7 @@ def _get_schedule_status() -> str:
                    ("Next Run", "Sonraki", "Prochaine", "Próxima", "Nächste")):
                 return f"Game update scheduled. {line.strip()}"
         return "Game update is scheduled."
-    if is_mac():
+    if config_manager.get_os_system() == "mac":
         plist_path = (Path.home() / "Library" / "LaunchAgents"
                       / "com.jarvis.gameupdater.plist")
         return ("Game update is scheduled via launchd."
@@ -953,7 +953,7 @@ def game_updater(parameters: dict, player=None, speak=None) -> str:
             else:
                 results.append("Steam: Not installed.")
         if platform in ("epic", "both"):
-            if is_linux():
+            if config_manager.get_os_system() == "linux":
                 results.append("Epic: Not natively supported on Linux.")
             else:
                 games = _get_epic_games()
@@ -1020,7 +1020,7 @@ def game_updater(parameters: dict, player=None, speak=None) -> str:
                     results.append("Auto-shutdown enabled.")
 
         if platform in ("epic", "both"):
-            if is_linux():
+            if config_manager.get_os_system() == "linux":
                 results.append(
                     "Epic: Not natively supported on Linux. Use Heroic Launcher."
                 )
