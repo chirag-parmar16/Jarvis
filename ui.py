@@ -1519,11 +1519,12 @@ class JarvisUI(QMainWindow):
     """
 
     # Qt signal for thread-safe log updates
-    _log_signal       = pyqtSignal(str)
-    _state_signal     = pyqtSignal(str)
-    _camera_signal    = pyqtSignal(bytes, int, int)
-    _gesture_signal   = pyqtSignal(str)
-    _boot_done_signal = pyqtSignal()
+    _log_signal         = pyqtSignal(str)
+    _state_signal       = pyqtSignal(str)
+    _camera_signal      = pyqtSignal(bytes, int, int)
+    _gesture_signal     = pyqtSignal(str)
+    _boot_done_signal   = pyqtSignal()
+    _request_setup_signal = pyqtSignal()
 
     def __init__(self, face_path, size=None):
         # ── QApplication must exist before QMainWindow ────────────────────────
@@ -1583,6 +1584,7 @@ class JarvisUI(QMainWindow):
         self._camera_signal.connect(self._on_camera_signal)
         self._gesture_signal.connect(self._cam_widget.show_gesture)
         self._boot_done_signal.connect(self._on_boot_done)
+        self._request_setup_signal.connect(self._show_setup_ui)
 
         # ── API Key check ─────────────────────────────────────────────────────
         self._api_key_ready = self._api_keys_exist()
@@ -1928,6 +1930,7 @@ class JarvisUI(QMainWindow):
         return "linux"
 
     def _show_setup_ui(self):
+        self._api_key_ready = False
         self._setup_overlay = QWidget(self.centralWidget())
         self._setup_overlay.setStyleSheet("background: rgba(0,0,0,180);")
         self._setup_overlay.resize(self.centralWidget().size())

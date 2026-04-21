@@ -817,8 +817,22 @@ class JarvisLive:
                     )
 
             except Exception as e:
-                print(f"[JARVIS] ⚠️ {e}")
-                traceback.print_exc()
+                err_str = str(e)
+                if "1007" in err_str or "API key not valid" in err_str:
+                    print("[JARVIS] 🛑 Invalid API Key detected. Requesting new key...")
+                    import memory.config_manager as config_manager
+                    config_manager.save_api_keys("")
+                    self.ui._request_setup_signal.emit()
+                    await asyncio.to_thread(self.ui.wait_for_api_key)
+                    # Recreate client with new key
+                    client = genai.Client(
+                        api_key=config_manager.get_gemini_key(),
+                        http_options={"api_version": "v1beta"}
+                    )
+                    continue
+                else:
+                    print(f"[JARVIS] ⚠️ {e}")
+                    traceback.print_exc()
 
             self.set_speaking(False)
             self.ui.set_state("THINKING")
