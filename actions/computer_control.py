@@ -22,6 +22,13 @@ try:
 except ImportError:
     _PYPERCLIP = False
 
+try:
+    from pywinauto import Application
+    _PYWINAUTO = True
+except ImportError:
+    _PYWINAUTO = False
+
+
 import memory.config_manager as config_manager
 
 def _get_os() -> str:
@@ -276,6 +283,103 @@ def _focus_window(title: str) -> str:
 
     return f"focus_window: unknown OS '{os_name}'"
 
+
+def _control_ui(window_title: str, element_name: str = "", action: str = "click", control_type: str = None) -> str:
+    if not _PYWINAUTO:
+        return "pywinauto not installed."
+    
+    last_err = ""
+    # Try both backends as some apps use old Win32 while others use modern UIA
+    for backend in ["uia", "win32"]:
+        try:
+            # 1. Connect to the application
+            try:
+                app = Application(backend=backend).connect(title_re=f"(?i).*{window_title}.*", timeout=3)
+            except:
+                # Fallback: manual handle search if regex connect fails
+                import pygetwindow as gw
+                wins = [w for w in gw.getAllWindows() if window_title.lower() in w.title.lower()]
+                if not wins: 
+                    last_err = f"Window '{window_title}' not found."
+                    continue
+                app = Application(backend=backend).connect(handle=wins[0]._hWnd)
+            
+            win = app.window(title_re=f"(?i).*{window_title}.*")
+            try:
+                win.set_focus()
+            except:
+                pass # Already focused or restricted
+            
+            # 2. If no element_name, we just wanted to focus the window
+            if not element_name:
+                return f"Focused window '{window_title}' using {backend} backend."
+                
+            # 3. Action 'inspect': discover what's available
+            if action == "inspect":
+                desc = win.descendants()
+                elements = []
+                for d in desc:
+                    try:
+                        t = d.window_text()
+                        if t and d.is_visible():
+                            elements.append(f"{t} ({d.control_type()})")
+                    except: pass
+                    if len(elements) > 25: break
+                return f"Elements in '{window_title}':\n" + "\n".join(elements)
+
+            # 4. Find element with fuzzy matching
+            kwargs = {"title": element_name}
+            if control_type: kwargs["control_type"] = control_type
+            
+            elem = win.child_window(**kwargs)
+            if not elem.exists():
+                # Fallback: search in descendants for fuzzy text match
+                search_term = element_name.lower()
+                for d in win.descendants():
+                    try:
+                        if search_term in d.window_text().lower():
+                            elem = d
+                            break
+                    except: pass
+            
+            if not elem.exists():
+                last_err = f"Element '{element_name}' not found in '{window_title}' ({backend})"
+                continue
+                
+            # 5. Execute action
+            if action == "click":
+                elem.click_input()
+            elif action == "double_click":
+                elem.double_click_input()
+            elif action == "right_click":
+                elem.right_click_input()
+            elif action == "type":
+                # Special handling for text entry
+                elem.type_keys(element_name, with_spaces=True, set_foreground=True)
+            elif action == "select":
+                if hasattr(elem, "select"): elem.select()
+                else: elem.click_input()
+            elif action == "focus":
+                elem.set_focus()
+            
+            return f"Success: {action}ed '{element_name}' in '{window_title}' ({backend})."
+            
+        except Exception as e:
+            last_err = str(e)
+            continue
+            
+    return f"UI Control Failed for '{window_title}': {last_err}. Suggestion: Check if the application is running as Administrator."
+
+def _verify_window_state(title: str) -> bool:
+    """Check if a window with the given title exists and is active."""
+    try:
+        import pygetwindow as gw
+        wins = gw.getWindowsWithTitle(title)
+        return len(wins) > 0
+    except:
+        return False
+
+
 def _screen_find(description: str) -> tuple[int, int] | None:
     api_key = _get_api_key()
     if not api_key:
@@ -365,7 +469,9 @@ def computer_control(
       wait          — sleep N seconds
       clear_field   — select-all + delete
       focus_window  — bring window to foreground
+      control_ui    — interact with window elements (tabs, buttons)
       screen_find   — AI element finder (returns x,y)
+
       screen_click  — AI element finder + click
       random_data   — generate fake form data
       user_data     — pull real data from memory
@@ -456,9 +562,22 @@ def computer_control(
             return _clear_field()
 
         if action == "focus_window":
-            return _focus_window(params.get("title", ""))
+            title = params.get("title", "")
+            res = _focus_window(title)
+            if _verify_window_state(title):
+                return f"Verified: {res}"
+            return f"Failed: Could not verify focus on '{title}'"
+
+        if action == "control_ui":
+            return _control_ui(
+                params.get("title", ""),
+                params.get("element", ""),
+                params.get("action", "click"),
+                control_type=params.get("type", None)
+            )
 
         if action == "random_data":
+
             dt     = params.get("type", "name")
             result = _random_data(dt)
             print(f"[ComputerControl] 🎲 random {dt} → {result}")

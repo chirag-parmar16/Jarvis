@@ -19,6 +19,7 @@ import os, json, time, math, random, threading, platform
 import sys
 from pathlib import Path
 from collections import deque
+import core.system_monitor as sys_mon
 import memory.config_manager as config_manager
 from icons import SVG_ICONS
 
@@ -37,8 +38,9 @@ from PyQt6.QtGui import (
     QIcon, 
     QPainter, QColor, QPen, QFont, QBrush, QLinearGradient,
     QRadialGradient, QPainterPath, QPixmap, QImage, QFontDatabase,
-    QConicalGradient, QPalette, QMovie,
+    QConicalGradient, QPalette, QMovie, QTextCursor,
 )
+
 
 # ── Optional: PIL for face image loading ─────────────────────────────────────
 try:
@@ -307,10 +309,6 @@ class HologramWidget(QWidget):
             x1 = x * cos_y - z * sin_y
             z1 = x * sin_y + z * cos_y
             # Rot X (Tilt)
-            y2 = y * cos_x - z1 * sin_x
-            z2 = y * sin_x + z1 * ctx # note: ctx was pre-defined below in segments, 
-                                      # using pre-calc cos_x here for master. 
-                                      # Wait, using cos_x globally is cleaner.
             y2 = y * cos_x - z1 * sin_x
             z2 = y * sin_x + z1 * cos_x
             
@@ -727,42 +725,24 @@ class StatsWidget(QWidget):
 
         self._layout.addStretch()
 
-        self._prev_net = None
         self._timer = QTimer(self)
-        self._timer.timeout.connect(self._refresh)
+        self._timer.timeout.connect(self._update_stats)
         self._timer.start(1000)
-        self._refresh()
+        self._update_stats()
 
-    def _refresh(self):
-        if not _PSUTIL:
-            return
-
-        cpu = psutil.cpu_percent()
-        ram = psutil.virtual_memory()
-        dsk = psutil.disk_usage("C:\\")
+    def _update_stats(self):
+        # Real data from system_monitor
+        cpu = sys_mon.get_cpu_usage()
+        ram = sys_mon.get_ram_usage()
+        dsk = sys_mon.get_disk_usage("C:")
 
         cpu_col = C_RED if cpu > 80 else (C_ACC2 if cpu > 60 else C_GREEN)
-        self._cpu_bar.set_value(cpu / 100, f"{cpu:.0f}%", cpu_col)
+        self._cpu_bar.set_value(cpu / 100, f"{cpu:.1f}%", cpu_col)
 
-        ram_pct = ram.percent / 100
-        ram_col = C_RED if ram.percent > 85 else C_PRI
-        self._ram_bar.set_value(ram_pct, f"{ram.percent:.0f}%", ram_col)
+        ram_col = C_RED if ram > 85 else C_PRI
+        self._ram_bar.set_value(ram / 100, f"{ram:.1f}%", ram_col)
 
-        dsk_pct = dsk.percent / 100
-        used_gb = dsk.used / 1e9
-        tot_gb  = dsk.total / 1e9
-        self._dsk_bar.set_value(dsk_pct, f"{used_gb:.0f}GB / {tot_gb:.0f}GB", C_MID)
-
-        # Network
-        cur_net = psutil.net_io_counters()
-        if self._prev_net is not None:
-            dl = (cur_net.bytes_recv - self._prev_net.bytes_recv) / 1024
-            ul = (cur_net.bytes_sent - self._prev_net.bytes_sent) / 1024
-            dl_txt = f"{dl/1024:.1f} MB/s" if dl > 1024 else f"{dl:.0f} KB/s"
-            ul_txt = f"{ul/1024:.1f} MB/s" if ul > 1024 else f"{ul:.0f} KB/s"
-            self._net_dl.set_value(min(dl / 12500, 1.0), dl_txt, C_GREEN)
-            self._net_ul.set_value(min(ul / 12500, 1.0), ul_txt, C_ACC2)
-        self._prev_net = cur_net
+        self._dsk_bar.set_value(dsk / 100, f"{dsk:.1f}%", C_MID)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -821,10 +801,70 @@ class SysInfoWidget(QWidget):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+#  TERMINAL WIDGET
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TerminalWidget(QWidget):
+    """Integrated terminal output widget."""
+    def __init__(self, close_cb=None, parent=None):
+        super().__init__(parent)
+        lay = QVBoxLayout(self)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.setSpacing(0)
+
+        header = QWidget()
+        header.setFixedHeight(24)
+        header.setStyleSheet(f"background: {C_PANEL2}; border-bottom: 1px solid {C_BORDER};")
+        h_lay = QHBoxLayout(header)
+        h_lay.setContentsMargins(10, 0, 10, 0)
+        h_lay.addWidget(QLabel("◈ CONSOLE"))
+        h_lay.addStretch()
+        
+        if close_cb:
+            btn = QPushButton("×")
+            btn.setFixedSize(20, 20)
+            btn.setCursor(Qt.CursorShape.PointingHandCursor)
+            btn.setStyleSheet(f"color: {C_DIM}; background: transparent; border: none; font-size: 14pt;")
+            btn.clicked.connect(close_cb)
+            h_lay.addWidget(btn)
+
+        lay.addWidget(header)
+
+
+        self._text = QTextEdit()
+        self._text.setReadOnly(True)
+        self._text.setFont(QFont("Consolas", 8))
+        self._text.setStyleSheet(f"""
+            QTextEdit {{
+                background: #000508; color: #a9b7c6;
+                border: none; padding: 4px;
+            }}
+        """)
+        lay.addWidget(self._text)
+
+    def write(self, text: str):
+        self._text.moveCursor(QTextCursor.MoveOperation.End)
+        self._text.insertPlainText(text)
+        self._text.moveCursor(QTextCursor.MoveOperation.End)
+
+class StreamRedirector:
+    """Redirects stdout/stderr to a callable."""
+    def __init__(self, callback):
+        self._callback = callback
+    def write(self, text):
+        self._callback(text)
+    def flush(self):
+        pass
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 #  QUICK ACTIONS WIDGET
 # ═══════════════════════════════════════════════════════════════════════════════
 
 class QuickActionsWidget(QWidget):
+    triggered = pyqtSignal(str)
+
 
     def _svg_to_pixmap(self, svg_str: str, size: int):
         if not svg_str: return QPixmap()
@@ -873,7 +913,9 @@ class QuickActionsWidget(QWidget):
                     border-radius: 3px;
                 }}
             """)
+            btn.clicked.connect(lambda _, n=name: self.triggered.emit(n))
             lay.addWidget(btn)
+
 
         lay.addStretch()
 
@@ -917,9 +959,9 @@ class ChatWidget(QWidget):
         inner = QWidget()
         inner.setStyleSheet("background: transparent;")
         self._msg_lay = QVBoxLayout(inner)
+        self._msg_lay.addStretch() # Moved to top
         self._msg_lay.setContentsMargins(8, 8, 8, 8)
         self._msg_lay.setSpacing(6)
-        self._msg_lay.addStretch()
         scroll.setWidget(inner)
         self._scroll = scroll
         lay.addWidget(scroll, 1)
@@ -978,13 +1020,17 @@ class ChatWidget(QWidget):
         msg_lbl.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         lay.addWidget(msg_lbl)
 
-        self._msg_lay.insertWidget(self._msg_lay.count() - 1, bubble)
-
-        # Auto scroll
-        QTimer.singleShot(50, lambda: self._scroll.verticalScrollBar().setValue(
-            self._scroll.verticalScrollBar().maximum()))
-
+        self._msg_lay.addWidget(bubble)
+        self._ensure_bottom_scroll()
         return msg_lbl
+
+    def _ensure_bottom_scroll(self):
+        """Robustly scroll to bottom after layout updates."""
+        vbar = self._scroll.verticalScrollBar()
+        # We use a sequence of shots to ensure we catch the layout after it settles
+        QTimer.singleShot(50, lambda: vbar.setValue(vbar.maximum()))
+        QTimer.singleShot(150, lambda: vbar.setValue(vbar.maximum()))
+
 
     def stream_log(self, text: str):
         """Append text to the last bubble if it belongs to the same tag, or create new."""
@@ -1013,9 +1059,7 @@ class ChatWidget(QWidget):
                         # Smart spacing: only add space if current is not empty and content doesn't start with space/punctuation
                         divider = " " if current and content and not content[0].isspace() and content[0] not in ".,!?;:" else ""
                         msg_lbl.setText(current + divider + content if current else content)
-                        # Scroll to bottom
-                        QTimer.singleShot(20, lambda: self._scroll.verticalScrollBar().setValue(
-                            self._scroll.verticalScrollBar().maximum()))
+                        self._ensure_bottom_scroll()
                         return
 
         # Create new bubble if tag changed or no bubble exists
@@ -1078,16 +1122,19 @@ class CameraWidget(QWidget):
         self._gesture_timer.start(50)
 
     def set_frame(self, bgr_bytes: bytes, w: int, h: int):
-        """Update display with a new BGR frame (from OpenCV)."""
+        """Update display with a new BGR frame efficiently."""
         try:
-            import numpy as np
-            arr = np.frombuffer(bgr_bytes, dtype="uint8").reshape((h, w, 3))
-            rgb = arr[:, :, ::-1].copy()
-            img = QImage(rgb.data, w, h, w * 3, QImage.Format.Format_RGB888)
+            # Create QImage directly from the BGR buffer. 
+            # Note: We must keep a reference to the buffer if it's not copied, 
+            # but here bgr_bytes is usually a fresh object from a signal.
+            # We copy the bytes to ensure the buffer remains valid for the QImage/QPixmap life cycle
+            safe_bytes = bytes(bgr_bytes)
+            img = QImage(safe_bytes, w, h, w * 3, QImage.Format.Format_BGR888)
             self._frame_pixmap = QPixmap.fromImage(img)
             self.update()
         except Exception:
             pass
+
 
     def show_gesture(self, text: str):
         self._gesture_text  = text
@@ -1108,14 +1155,9 @@ class CameraWidget(QWidget):
         p.fillRect(0, 0, W, H, QColor("#000508"))
 
         if self._frame_pixmap:
-            scaled = self._frame_pixmap.scaled(
-                W, H,
-                Qt.AspectRatioMode.KeepAspectRatioByExpanding,
-                Qt.TransformationMode.SmoothTransformation)
-            # Center-crop
-            x = (scaled.width()  - W) // 2
-            y = (scaled.height() - H) // 2
-            p.drawPixmap(0, 0, scaled, x, y, W, H)
+            # OPTIMIZATION: Draw pixmap directly to the widget rect with scaling.
+            # This is significantly faster than calling .scaled() which creates a new object every frame.
+            p.drawPixmap(self.rect(), self._frame_pixmap)
 
             # Scan line overlay
             for gy in range(0, H, 4):
@@ -1564,6 +1606,8 @@ class JarvisUI(QMainWindow):
     _gesture_signal     = pyqtSignal(str)
     _boot_done_signal   = pyqtSignal()
     _request_setup_signal = pyqtSignal()
+    _term_signal        = pyqtSignal(str)
+
 
     def __init__(self, face_path, size=None):
         # ── QApplication must exist before QMainWindow ────────────────────────
@@ -1590,11 +1634,16 @@ class JarvisUI(QMainWindow):
         self.setStyleSheet(f"background: {C_BG};")
         self.showMaximized()
 
+        self.showMaximized()
+
+        # ── State ─────────────────────────────────────────────────────────────
+
         # ── State ─────────────────────────────────────────────────────────────
         self.muted           = False
         self.speaking        = False
         self.boot_finished   = False
-        self.on_text_command = None       # preserved callback
+        self.on_text_command    = None       # preserved callback
+        self.on_action_triggered = None      # for direct tool execution
 
         self.FACE_SZ        = 400         # kept for back-compat
         self.FCX            = W // 2
@@ -1611,7 +1660,13 @@ class JarvisUI(QMainWindow):
         # ── Build UI ──────────────────────────────────────────────────────────
         self._build_ui()
 
+        # ── Redirect Streams ─────────────────────────────────────────────────
+        self._term_signal.connect(lambda t: self._terminal.write(t))
+        sys.stdout = StreamRedirector(self._term_signal.emit)
+        sys.stderr = StreamRedirector(self._term_signal.emit)
+
         # ── Load face image (preserved) ───────────────────────────────────────
+
         self._face_pil         = None
         self._has_face         = False
         self._face_scale_cache = None
@@ -1695,6 +1750,7 @@ class JarvisUI(QMainWindow):
 
         qa_panel = _make_panel()
         self._qa = QuickActionsWidget(qa_panel)
+        self._qa.triggered.connect(self._handle_quick_action)
         qa_lay = QVBoxLayout(qa_panel)
         qa_lay.setContentsMargins(0, 0, 0, 0)
         qa_lay.addWidget(self._qa)
@@ -1702,7 +1758,13 @@ class JarvisUI(QMainWindow):
 
         body_lay.addWidget(left)
 
-        # ── CENTER PANEL ─────────────────────────────────────────────────────
+
+        # ── CENTER COLUMN (Center Panel + Terminal) ──────────────────────────
+        center_col_widget = QWidget()
+        center_col_lay = QVBoxLayout(center_col_widget)
+        center_col_lay.setContentsMargins(0, 0, 0, 0)
+        center_col_lay.setSpacing(6)
+
         center = QWidget()
         center.setStyleSheet("background: transparent;")
         center_lay = QVBoxLayout(center)
@@ -1736,7 +1798,21 @@ class JarvisUI(QMainWindow):
         self._input_bar.submitted.connect(self._on_input_submit)
         center_lay.addWidget(self._input_bar)
 
-        body_lay.addWidget(center, 1)
+        center_col_lay.addWidget(center, 1)
+
+        # ── BOTTOM PANEL (Integrated Console) ──────────────────────────────
+        self._term_panel = _make_panel()
+        self._term_panel.setFixedHeight(180)
+        self._term_panel.hide() 
+        self._terminal = TerminalWidget(close_cb=self._toggle_terminal)
+        tp_lay = QVBoxLayout(self._term_panel)
+        tp_lay.setContentsMargins(0, 0, 0, 0)
+        tp_lay.addWidget(self._terminal)
+        
+        center_col_lay.addWidget(self._term_panel)
+
+        body_lay.addWidget(center_col_widget, 1)
+
 
         # ── RIGHT PANEL ──────────────────────────────────────────────────────
         right = QWidget()
@@ -1785,16 +1861,35 @@ class JarvisUI(QMainWindow):
 
         root_lay.addWidget(body, 1)
 
+
+
         # Footer
+
         self._footer = FooterWidget()
         root_lay.addWidget(self._footer)
+
+    def _handle_action_via_tool(self, tool_name: str, args: dict):
+        """Directly trigger tool execution."""
+        if self.on_action_triggered:
+            self.on_action_triggered(tool_name, args)
+        elif self.on_text_command:
+            # Fallback
+            cmd = f"Execute tool {tool_name} with args {json.dumps(args)}"
+            threading.Thread(target=self.on_text_command, args=(cmd,), daemon=True).start()
 
     # ─────────────────────────────────────────────────────────────────────────
     #  KEYBOARD SHORTCUTS
     # ─────────────────────────────────────────────────────────────────────────
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key.Key_F4:
+        """Handle global UI hotkeys."""
+        if event.key() == Qt.Key.Key_Escape:
+            if self.isMaximized():
+                self.showNormal()
+                self.resize(1000, 750)
+            else:
+                self.showMaximized()
+        elif event.key() == Qt.Key.Key_F4:
             self._toggle_mute()
         super().keyPressEvent(event)
 
@@ -2013,3 +2108,34 @@ class JarvisUI(QMainWindow):
     def on_gesture_detected(self, gesture: str):
         """Thread-safe gesture callback — called by VisionManager."""
         self._gesture_signal.emit(gesture)
+
+    def _handle_quick_action(self, name: str):
+        """Map quick action names to internal commands."""
+        if name == "Terminal":
+            self._toggle_terminal()
+            return
+
+        mapping = {
+            "File Explorer": "file_explorer",
+            "Settings": "open_settings",
+            "Task Manager": "task_manager",
+        }
+        action = mapping.get(name)
+        if action:
+            self._handle_action_via_tool("computer_settings", {"action": action})
+        elif name == "Apps":
+            self._handle_action_via_tool("open_app", {"app_name": "Chrome"})
+
+    def _toggle_terminal(self):
+        """Toggle the visibility of the bottom console panel."""
+        if self._term_panel.isVisible():
+            self._term_panel.hide()
+        else:
+            self._term_panel.show()
+
+
+        """Helper to inject a tool call into the JARVIS session."""
+        if self.on_text_command:
+            # We wrap this in a natural language command that will trigger the tool
+            cmd = f"Execute tool {tool_name} with args {json.dumps(args)}"
+            threading.Thread(target=self.on_text_command, args=(cmd,), daemon=True).start()

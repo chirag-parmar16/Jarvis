@@ -20,11 +20,19 @@ def run_as_admin():
         return True
     
     # Relaunch the program with admin rights
-    print("[SYS] Requesting elevated privileges...")
+    # We use pythonw.exe if available to avoid an extra console window
+    executable = sys.executable.replace("python.exe", "pythonw.exe")
+    if not os.path.exists(executable):
+        executable = sys.executable
+
+    print(f"[SYS] Requesting elevated privileges via {os.path.basename(executable)}...")
+    
+    # SW_HIDE = 0 to avoid showing the new terminal window
     ctypes.windll.shell32.ShellExecuteW(
-        None, "runas", sys.executable, " ".join(sys.argv), None, 1
+        None, "runas", executable, " ".join(sys.argv), None, 0
     )
     sys.exit(0)
+
 
 # Ensure UTF-8 stdout so emoji in print() don't crash on Windows terminals
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -446,7 +454,21 @@ TOOL_DECLARATIONS = [
             "required": ["category", "key", "value"]
         }
     },
+    {
+
+        "name": "system_stats",
+
+        "description": "Fetch real-time system performance data: CPU, Memory, Disk, and top processes.",
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "top_n": {"type": "INTEGER", "description": "Number of top processes to return (default: 5)"}
+            },
+            "required": []
+        }
+    },
 ]
+
 
 
 class JarvisLive:
@@ -461,7 +483,24 @@ class JarvisLive:
         self._is_speaking   = False
         self._speaking_lock = threading.Lock()
         self.ui.on_text_command = self._on_text_command
+        self.ui.on_action_triggered = self._on_action_triggered
         self._turn_done_event: asyncio.Event | None = None
+
+    def _on_action_triggered(self, tool_name: str, args: dict):
+        """Execute a tool locally and immediately from a UI action."""
+        if not self._loop: return
+        
+        # We need a dummy FunctionCall object to reuse _execute_tool
+        class DummyFC:
+            def __init__(self, name, args):
+                self.name = name
+                self.args = args
+                self.id = "ui_action_" + str(time.time())
+        
+        asyncio.run_coroutine_threadsafe(
+            self._execute_tool(DummyFC(tool_name, args)),
+            self._loop
+        )
 
     def _on_text_command(self, text: str):
         if not self._loop or not self.session:
@@ -639,7 +678,17 @@ class JarvisLive:
                 r = await loop.run_in_executor(None, lambda: flight_finder(parameters=args, player=self.ui))
                 result = r or "Done."
 
+            elif name == "system_stats":
+                import core.system_monitor as sm
+                summary = sm.get_system_summary()
+                top     = sm.get_top_processes(args.get("top_n", 5))
+                result  = {
+                    "summary": summary,
+                    "top_processes": top
+                }
+
             elif name == "shutdown_jarvis":
+
                 self.ui.write_log("SYS: Shutdown requested.")
                 self.speak("Goodbye, sir.")
                 def _shutdown():
@@ -680,7 +729,7 @@ class JarvisLive:
                         self.out_queue.put_nowait({"data": jpeg, "mime_type": "image/jpeg"})
                     except asyncio.QueueFull:
                         pass
-            await asyncio.sleep(1.0)
+            await asyncio.sleep(0.5)
 
 
     async def _listen_audio(self):
@@ -829,7 +878,7 @@ class JarvisLive:
                     self.session        = session
                     self._loop          = asyncio.get_event_loop()
                     self.audio_in_queue = asyncio.Queue()
-                    self.out_queue      = asyncio.Queue(maxsize=10)
+                    self.out_queue      = asyncio.Queue(maxsize=50)
                     self._turn_done_event = asyncio.Event()
 
                     print("[JARVIS] ✅ Connected.")

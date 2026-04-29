@@ -9,6 +9,13 @@ try:
 except ImportError:
     _PSUTIL = False
 
+try:
+    import pygetwindow as gw
+    _GW = True
+except ImportError:
+    _GW = False
+
+
 _SYSTEM = platform.system()
 
 _APP_ALIASES: dict[str, dict[str, str]] = {
@@ -242,6 +249,41 @@ def open_app(
     if player:
         player.write_log(f"[open_app] {app_name}")
 
+    # ── Smart Focus ──────────────────────────────────────────────────────────
+    if _GW:
+        # Try to find a window with a similar name (Case-insensitive)
+        windows = []
+        try:
+            all_wins = gw.getAllWindows()
+            search_term = app_name.lower()
+            windows = [w for w in all_wins if search_term in w.title.lower()]
+            
+            if not windows and app_name.lower() in _APP_ALIASES:
+                alias = _APP_ALIASES[app_name.lower()].get(_SYSTEM, "").lower()
+                if alias:
+                    windows = [w for w in all_wins if alias in w.title.lower()]
+        except:
+            pass
+        
+        if windows:
+            try:
+                win = windows[0]
+                if win.isMinimized:
+                    win.restore()
+                win.activate()
+                # Added fallback for strict focus
+                try:
+                    import pywinauto
+                    app = pywinauto.Application().connect(handle=win._hWnd)
+                    app.window(handle=win._hWnd).set_focus()
+                except:
+                    pass
+                print(f"[open_app] Focused existing window: {win.title}")
+                return f"Switched to already open {app_name}."
+            except Exception as fe:
+                print(f"[open_app] Focus failed: {fe}")
+
+    # ── Launch if not found ──────────────────────────────────────────────────
     try:
         if launcher(normalized):
             return f"Opened {app_name}."
@@ -254,4 +296,4 @@ def open_app(
         )
     except Exception as e:
         print(f"[open_app] Error: {e}")
-        return f"Failed to open {app_name}: {e}"
+        return f"Failed to open {app_name}: {e}"
