@@ -13,24 +13,20 @@ from typing import Optional
 
 try:
     import cv2
-    import mediapipe as mp
     _CV2 = True
-    _MP  = True
 except ImportError:
     _CV2 = False
-    _MP  = False
-    print("[VisionMgr] cv2 or mediapipe not installed - camera/gestures disabled.")
+    print("[VisionMgr] cv2 not installed - camera feed disabled.")
 
 class VisionManager:
     """
     Runs the camera in a background thread.
-    Pushes frames to JarvisUI and performs real-time gesture classification.
+    Pushes frames to JarvisUI for visual feedback and encodes JPEGs for Gemini.
     """
 
-    def __init__(self, ui=None, camera_index: int = 0, on_interrupt=None):
+    def __init__(self, ui=None, camera_index: int = 0):
         self._ui           = ui
         self._camera_index = camera_index
-        self._on_interrupt = on_interrupt
         self._running      = False
         self._thread: Optional[threading.Thread] = None
 
@@ -38,20 +34,6 @@ class VisionManager:
         self._latest_jpeg       = None
         self._jpeg_lock         = threading.Lock()
         self._jpeg_counter      = 0
-
-        # Gesture Debouncing
-        self._fist_frames       = 0
-        self._FIST_THRESHOLD    = 4  # Confirmation frames
-
-        # MediaPipe Setup
-        self._mp_hands = None
-        if _MP:
-            self._mp_hands = mp.solutions.hands.Hands(
-                static_image_mode=False,
-                max_num_hands=1,
-                min_detection_confidence=0.7,
-                min_tracking_confidence=0.5
-            )
 
     def get_latest_jpeg(self) -> bytes | None:
         """Returns the most recent camera frame as JPEG bytes, or None."""
@@ -68,7 +50,7 @@ class VisionManager:
             name="VisionManagerThread",
         )
         self._thread.start()
-        print("[VisionMgr] Started (Gesture Mode)")
+        print("[VisionMgr] Started (Lite Mode)")
 
     def stop(self):
         self._running = False
@@ -96,10 +78,6 @@ class VisionManager:
                 frame = cv2.flip(frame, 1)
                 h, w  = frame.shape[:2]
                 
-                # ── GESTURE CLASSIFICATION (MediaPipe) ──────────────────────────
-                if self._mp_hands:
-                    self._process_gestures(frame)
-
                 # Notify UI that first frame is ready
                 if self._ui and not self._notified_ready:
                     self._ui.notify_vision_ready()
@@ -124,49 +102,10 @@ class VisionManager:
                     except Exception:
                         pass
 
-                time.sleep(0.033) # ~30 FPS loop for gesture responsiveness
+                time.sleep(0.042)
 
         finally:
             cap.release()
-
-    def _process_gestures(self, frame):
-        # MediaPipe expects RGB
-        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = self._mp_hands.process(rgb)
-
-        is_fist = False
-        if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                # Logic: Check if fingers are folded.
-                # Landmark 8 (Index Tip) < Landmark 6 (Index MCP) etc.
-                # In normalized coords (0,0 is top-left), y increases downwards.
-                # Tip.y > MCP.y means tip is below (folded).
-                
-                landmarks = hand_landmarks.landmark
-                # Finger tips: 8, 12, 16, 20
-                # Finger MCPs: 6, 10, 14, 18
-                fingers_folded = []
-                for tip, mcp in [(8, 6), (12, 10), (16, 14), (20, 18)]:
-                    fingers_folded.append(landmarks[tip].y > landmarks[mcp].y)
-                
-                # Thumb check (X-axis distance from Pinky MCP)
-                thumb_folded = False
-                if landmarks[4].x > landmarks[3].x: # Right hand perspective simplified
-                    thumb_folded = True
-                
-                if all(fingers_folded):
-                    is_fist = True
-
-        if is_fist:
-            self._fist_frames += 1
-            if self._fist_frames == self._FIST_THRESHOLD:
-                print("[VisionMgr] ✋ FIST DETECTED - Triggering Interrupt")
-                if self._ui: self._ui.on_gesture_detected("FIST")
-                if self._on_interrupt:
-                    # Execute callback in a safe way
-                    self._on_interrupt()
-        else:
-            self._fist_frames = 0
 
     def _open_camera(self):
         if not _CV2:
@@ -183,7 +122,7 @@ class VisionManager:
                 if cap.isOpened():
                     cap.set(cv2.CAP_PROP_FRAME_WIDTH,  640)
                     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-                    cap.set(cv2.CAP_PROP_FPS,          30)
+                    cap.set(cv2.CAP_PROP_FPS,          24)
                     print(f"[VisionMgr] Camera at index {idx}")
                     return cap
                 cap.release()
@@ -192,7 +131,7 @@ class VisionManager:
         print("[VisionMgr] No camera found")
         return None
 
-def start_vision(ui=None, camera_index: int = 0, on_interrupt=None) -> VisionManager:
-    vm = VisionManager(ui=ui, camera_index=camera_index, on_interrupt=on_interrupt)
+def start_vision(ui=None, camera_index: int = 0) -> VisionManager:
+    vm = VisionManager(ui=ui, camera_index=camera_index)
     vm.start()
     return vm
