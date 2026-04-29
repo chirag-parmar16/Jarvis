@@ -486,6 +486,32 @@ class JarvisLive:
         self.ui.on_action_triggered = self._on_action_triggered
         self._turn_done_event: asyncio.Event | None = None
 
+    def interrupt(self):
+        """Immediately stops the current response and clears queues."""
+        if not self._loop or not self.audio_in_queue:
+            return
+        
+        def _do_interrupt():
+            print("[JARVIS] ✋ Gesture Interrupt: Resetting response state...")
+            # 1. Clear audio output queue
+            while not self.audio_in_queue.empty():
+                try:
+                    self.audio_in_queue.get_nowait()
+                except asyncio.QueueEmpty:
+                    break
+            
+            # 2. Reset UI state
+            self.set_speaking(False)
+            self.ui.set_state("LISTENING")
+            
+            # 3. Discard incoming server audio turn
+            if self._turn_done_event:
+                self._turn_done_event.set()
+                
+            self.ui.write_log("SYS: Interrupt (Gesture)")
+
+        self._loop.call_soon_threadsafe(_do_interrupt)
+
     def _on_action_triggered(self, tool_name: str, args: dict):
         """Execute a tool locally and immediately from a UI action."""
         if not self._loop: return
@@ -944,6 +970,11 @@ def main():
     def runner():
         ui.wait_for_api_key()
         jarvis = JarvisLive(ui, vision_manager=_vm if '_vm' in locals() else None)
+        
+        # Link gesture interrupt to jarvis.interrupt
+        if _vm:
+            _vm._on_interrupt = jarvis.interrupt
+
         try:
             asyncio.run(jarvis.run())
         except KeyboardInterrupt:

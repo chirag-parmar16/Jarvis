@@ -85,10 +85,19 @@
       "norm_label": ".__init__()"
     },
     {
-      "label": "._on_action_triggered()",
+      "label": ".interrupt()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
       "source_location": "L489",
+      "id": "main_jarvislive_interrupt",
+      "community": 2,
+      "norm_label": ".interrupt()"
+    },
+    {
+      "label": "._on_action_triggered()",
+      "file_type": "code",
+      "source_file": "E:\\Jarvis-MK37\\main.py",
+      "source_location": "L515",
       "id": "main_jarvislive_on_action_triggered",
       "community": 2,
       "norm_label": "._on_action_triggered()"
@@ -97,7 +106,7 @@
       "label": "._on_text_command()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L505",
+      "source_location": "L531",
       "id": "main_jarvislive_on_text_command",
       "community": 2,
       "norm_label": "._on_text_command()"
@@ -106,7 +115,7 @@
       "label": ".set_speaking()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L516",
+      "source_location": "L542",
       "id": "main_jarvislive_set_speaking",
       "community": 2,
       "norm_label": ".set_speaking()"
@@ -115,25 +124,25 @@
       "label": ".speak()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L524",
+      "source_location": "L550",
       "id": "main_jarvislive_speak",
-      "community": 4,
+      "community": 3,
       "norm_label": ".speak()"
     },
     {
       "label": ".speak_error()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L535",
+      "source_location": "L561",
       "id": "main_jarvislive_speak_error",
-      "community": 6,
+      "community": 2,
       "norm_label": ".speak_error()"
     },
     {
       "label": "._build_config()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L540",
+      "source_location": "L566",
       "id": "main_jarvislive_build_config",
       "community": 2,
       "norm_label": "._build_config()"
@@ -142,16 +151,16 @@
       "label": "._execute_tool()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L576",
+      "source_location": "L602",
       "id": "main_jarvislive_execute_tool",
-      "community": 6,
+      "community": 2,
       "norm_label": "._execute_tool()"
     },
     {
       "label": "._send_realtime()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L717",
+      "source_location": "L743",
       "id": "main_jarvislive_send_realtime",
       "community": 2,
       "norm_label": "._send_realtime()"
@@ -160,7 +169,7 @@
       "label": "._send_video_frames()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L722",
+      "source_location": "L748",
       "id": "main_jarvislive_send_video_frames",
       "community": 2,
       "norm_label": "._send_video_frames()"
@@ -169,7 +178,7 @@
       "label": "._listen_audio()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L735",
+      "source_location": "L761",
       "id": "main_jarvislive_listen_audio",
       "community": 2,
       "norm_label": "._listen_audio()"
@@ -178,7 +187,7 @@
       "label": "._receive_audio()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L764",
+      "source_location": "L790",
       "id": "main_jarvislive_receive_audio",
       "community": 2,
       "norm_label": "._receive_audio()"
@@ -187,7 +196,7 @@
       "label": "._play_audio()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L823",
+      "source_location": "L849",
       "id": "main_jarvislive_play_audio",
       "community": 2,
       "norm_label": "._play_audio()"
@@ -196,7 +205,7 @@
       "label": ".run()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L862",
+      "source_location": "L888",
       "id": "main_jarvislive_run",
       "community": 2,
       "norm_label": ".run()"
@@ -205,7 +214,7 @@
       "label": "main()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L934",
+      "source_location": "L960",
       "id": "main_main",
       "community": 2,
       "norm_label": "main()"
@@ -215,18 +224,27 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\main.py",
       "source_location": "L110",
-      "id": "main_rationale_110",
       "community": 2,
-      "norm_label": "gemini'nin urettigi <ctrlxx> artefaktlar\u0131n\u0131 ve kontrol karakterlerini temizler."
+      "norm_label": "gemini'nin urettigi <ctrlxx> artefaktlar\u0131n\u0131 ve kontrol karakterlerini temizler.",
+      "id": "main_rationale_110"
     },
     {
       "label": "Execute a tool locally and immediately from a UI action.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\main.py",
       "source_location": "L490",
-      "id": "main_rationale_490",
       "community": 2,
-      "norm_label": "execute a tool locally and immediately from a ui action."
+      "norm_label": "execute a tool locally and immediately from a ui action.",
+      "id": "main_rationale_490"
+    },
+    {
+      "label": "Execute a tool locally and immediately from a UI action.",
+      "file_type": "rationale",
+      "source_file": "E:\\Jarvis-MK37\\main.py",
+      "source_location": "L516",
+      "community": 2,
+      "norm_label": "execute a tool locally and immediately from a ui action.",
+      "id": "main_rationale_516"
     },
     {
       "label": "setup.py",
@@ -531,7 +549,7 @@
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L653",
       "id": "ui_statbar_set_value",
-      "community": 6,
+      "community": 0,
       "norm_label": ".set_value()"
     },
     {
@@ -567,7 +585,7 @@
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L733",
       "id": "ui_statswidget_update_stats",
-      "community": 6,
+      "community": 14,
       "norm_label": "._update_stats()"
     },
     {
@@ -792,7 +810,7 @@
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1124",
       "id": "ui_camerawidget_set_frame",
-      "community": 8,
+      "community": 6,
       "norm_label": ".set_frame()"
     },
     {
@@ -990,7 +1008,7 @@
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1508",
       "id": "ui_setupdialog_save",
-      "community": 10,
+      "community": 9,
       "norm_label": "._save()"
     },
     {
@@ -1170,7 +1188,7 @@
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1982",
       "id": "ui_jarvisui_write_log",
-      "community": 6,
+      "community": 2,
       "norm_label": ".write_log()"
     },
     {
@@ -1242,7 +1260,7 @@
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2056",
       "id": "ui_jarvisui_api_keys_exist",
-      "community": 10,
+      "community": 9,
       "norm_label": "._api_keys_exist()"
     },
     {
@@ -1296,7 +1314,7 @@
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2105",
       "id": "ui_jarvisui_on_camera_signal",
-      "community": 8,
+      "community": 6,
       "norm_label": "._on_camera_signal()"
     },
     {
@@ -1340,234 +1358,234 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L111",
-      "id": "ui_rationale_111",
       "community": 0,
-      "norm_label": "drop-in replacement for tk.tk() \u2014 gives main.py a `.mainloop()` call."
+      "norm_label": "drop-in replacement for tk.tk() \u2014 gives main.py a `.mainloop()` call.",
+      "id": "ui_rationale_111"
     },
     {
       "label": "True 3D Volumetric Orbital Globe with Y-axis rotation and perspective projection",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L163",
-      "id": "ui_rationale_163",
       "community": 0,
-      "norm_label": "true 3d volumetric orbital globe with y-axis rotation and perspective projection"
+      "norm_label": "true 3d volumetric orbital globe with y-axis rotation and perspective projection",
+      "id": "ui_rationale_163"
     },
     {
       "label": "Pre-generate the Multi-Axial 'Cage' geometry.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L192",
-      "id": "ui_rationale_192",
       "community": 0,
-      "norm_label": "pre-generate the multi-axial 'cage' geometry."
+      "norm_label": "pre-generate the multi-axial 'cage' geometry.",
+      "id": "ui_rationale_192"
     },
     {
       "label": "Circular HUD loader inspired by the 'ATLAS' reference image.     Features rotat",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L444",
-      "id": "ui_rationale_444",
       "community": 0,
-      "norm_label": "circular hud loader inspired by the 'atlas' reference image.     features rotat"
+      "norm_label": "circular hud loader inspired by the 'atlas' reference image.     features rotat",
+      "id": "ui_rationale_444"
     },
     {
       "label": "Audio-level bars that pulse when JARVIS is speaking.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L582",
-      "id": "ui_rationale_582",
       "community": 0,
-      "norm_label": "audio-level bars that pulse when jarvis is speaking."
+      "norm_label": "audio-level bars that pulse when jarvis is speaking.",
+      "id": "ui_rationale_582"
     },
     {
       "label": "Integrated terminal output widget.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L808",
-      "id": "ui_rationale_808",
       "community": 0,
-      "norm_label": "integrated terminal output widget."
+      "norm_label": "integrated terminal output widget.",
+      "id": "ui_rationale_808"
     },
     {
       "label": "Redirects stdout/stderr to a callable.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L851",
-      "id": "ui_rationale_851",
       "community": 1,
-      "norm_label": "redirects stdout/stderr to a callable."
+      "norm_label": "redirects stdout/stderr to a callable.",
+      "id": "ui_rationale_851"
     },
     {
       "label": "Scrollable chat log with typewriter effect \u2014 mirrors original log_text.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L928",
-      "id": "ui_rationale_928",
       "community": 0,
-      "norm_label": "scrollable chat log with typewriter effect \u2014 mirrors original log_text."
+      "norm_label": "scrollable chat log with typewriter effect \u2014 mirrors original log_text.",
+      "id": "ui_rationale_928"
     },
     {
       "label": "Add a styled chat bubble to the layout.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L980",
-      "id": "ui_rationale_980",
       "community": 0,
-      "norm_label": "add a styled chat bubble to the layout."
+      "norm_label": "add a styled chat bubble to the layout.",
+      "id": "ui_rationale_980"
     },
     {
       "label": "Robustly scroll to bottom after layout updates.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1028",
-      "id": "ui_rationale_1028",
       "community": 0,
-      "norm_label": "robustly scroll to bottom after layout updates."
+      "norm_label": "robustly scroll to bottom after layout updates.",
+      "id": "ui_rationale_1028"
     },
     {
       "label": "Append text to the last bubble if it belongs to the same tag, or create new.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1036",
-      "id": "ui_rationale_1036",
       "community": 0,
-      "norm_label": "append text to the last bubble if it belongs to the same tag, or create new."
+      "norm_label": "append text to the last bubble if it belongs to the same tag, or create new.",
+      "id": "ui_rationale_1036"
     },
     {
       "label": "Update display with a new BGR frame efficiently.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1125",
-      "id": "ui_rationale_1125",
-      "community": 8,
-      "norm_label": "update display with a new bgr frame efficiently."
+      "community": 6,
+      "norm_label": "update display with a new bgr frame efficiently.",
+      "id": "ui_rationale_1125"
     },
     {
       "label": "Complete PyQt6 implementation of J.A.R.V.I.S.     \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1595",
-      "id": "ui_rationale_1595",
       "community": 2,
-      "norm_label": "complete pyqt6 implementation of j.a.r.v.i.s.     \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+      "norm_label": "complete pyqt6 implementation of j.a.r.v.i.s.     \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+      "id": "ui_rationale_1595"
     },
     {
       "label": "Directly trigger tool execution.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1872",
-      "id": "ui_rationale_1872",
       "community": 0,
-      "norm_label": "directly trigger tool execution."
+      "norm_label": "directly trigger tool execution.",
+      "id": "ui_rationale_1872"
     },
     {
       "label": "Handle global UI hotkeys.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1885",
-      "id": "ui_rationale_1885",
       "community": 2,
-      "norm_label": "handle global ui hotkeys."
+      "norm_label": "handle global ui hotkeys.",
+      "id": "ui_rationale_1885"
     },
     {
       "label": "Thread-safe \u2014 callable from any thread.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1930",
-      "id": "ui_rationale_1930",
       "community": 2,
-      "norm_label": "thread-safe \u2014 callable from any thread."
+      "norm_label": "thread-safe \u2014 callable from any thread.",
+      "id": "ui_rationale_1930"
     },
     {
       "label": "Thread-safe signal to finish boot sequence.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1962",
-      "id": "ui_rationale_1962",
       "community": 2,
-      "norm_label": "thread-safe signal to finish boot sequence."
+      "norm_label": "thread-safe signal to finish boot sequence.",
+      "id": "ui_rationale_1962"
     },
     {
       "label": "Perform the actual UI transition on the main thread.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1966",
-      "id": "ui_rationale_1966",
       "community": 2,
-      "norm_label": "perform the actual ui transition on the main thread."
+      "norm_label": "perform the actual ui transition on the main thread.",
+      "id": "ui_rationale_1966"
     },
     {
       "label": "Thread-safe \u2014 adds a new log entry with typewriter effect.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1983",
-      "id": "ui_rationale_1983",
-      "community": 6,
-      "norm_label": "thread-safe \u2014 adds a new log entry with typewriter effect."
+      "community": 2,
+      "norm_label": "thread-safe \u2014 adds a new log entry with typewriter effect.",
+      "id": "ui_rationale_1983"
     },
     {
       "label": "Thread-safe \u2014 appends text to the last bubble immediately.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1992",
-      "id": "ui_rationale_1992",
       "community": 2,
-      "norm_label": "thread-safe \u2014 appends text to the last bubble immediately."
+      "norm_label": "thread-safe \u2014 appends text to the last bubble immediately.",
+      "id": "ui_rationale_1992"
     },
     {
       "label": "Handle global UI hotkeys.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2017",
-      "id": "ui_rationale_2017",
       "community": 2,
-      "norm_label": "handle global ui hotkeys."
+      "norm_label": "handle global ui hotkeys.",
+      "id": "ui_rationale_2017"
     },
     {
       "label": "Called by InputBarWidget.submitted signal.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2043",
-      "id": "ui_rationale_2043",
       "community": 2,
-      "norm_label": "called by inputbarwidget.submitted signal."
+      "norm_label": "called by inputbarwidget.submitted signal.",
+      "id": "ui_rationale_2043"
     },
     {
       "label": "Thread-safe camera frame update.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2102",
-      "id": "ui_rationale_2102",
       "community": 2,
-      "norm_label": "thread-safe camera frame update."
+      "norm_label": "thread-safe camera frame update.",
+      "id": "ui_rationale_2102"
     },
     {
       "label": "Thread-safe gesture callback \u2014 called by VisionManager.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2109",
-      "id": "ui_rationale_2109",
       "community": 2,
-      "norm_label": "thread-safe gesture callback \u2014 called by visionmanager."
+      "norm_label": "thread-safe gesture callback \u2014 called by visionmanager.",
+      "id": "ui_rationale_2109"
     },
     {
       "label": "Map quick action names to internal commands.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2113",
-      "id": "ui_rationale_2113",
       "community": 2,
-      "norm_label": "map quick action names to internal commands."
+      "norm_label": "map quick action names to internal commands.",
+      "id": "ui_rationale_2113"
     },
     {
       "label": "Toggle the visibility of the bottom console panel.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2130",
-      "id": "ui_rationale_2130",
       "community": 2,
-      "norm_label": "toggle the visibility of the bottom console panel."
+      "norm_label": "toggle the visibility of the bottom console panel.",
+      "id": "ui_rationale_2130"
     },
     {
       "label": "update_icons.py",
@@ -1602,7 +1620,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_browser_control_py",
-      "community": 3,
+      "community": 4,
       "norm_label": "browser_control.py"
     },
     {
@@ -1611,7 +1629,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L43",
       "id": "browser_control_normalize_url",
-      "community": 3,
+      "community": 4,
       "norm_label": "_normalize_url()"
     },
     {
@@ -1620,7 +1638,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L61",
       "id": "browser_control_user_agent",
-      "community": 3,
+      "community": 4,
       "norm_label": "_user_agent()"
     },
     {
@@ -1629,7 +1647,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L82",
       "id": "browser_control_real_profile_dir",
-      "community": 3,
+      "community": 4,
       "norm_label": "_real_profile_dir()"
     },
     {
@@ -1638,7 +1656,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L138",
       "id": "browser_control_firefox_profile_dir",
-      "community": 3,
+      "community": 4,
       "norm_label": "_firefox_profile_dir()"
     },
     {
@@ -1647,7 +1665,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L179",
       "id": "browser_control_find_opera_windows",
-      "community": 3,
+      "community": 4,
       "norm_label": "_find_opera_windows()"
     },
     {
@@ -1656,7 +1674,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L222",
       "id": "browser_control_find_exe_windows",
-      "community": 3,
+      "community": 4,
       "norm_label": "_find_exe_windows()"
     },
     {
@@ -1665,7 +1683,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L293",
       "id": "browser_control_resolve_browser",
-      "community": 3,
+      "community": 4,
       "norm_label": "_resolve_browser()"
     },
     {
@@ -1674,7 +1692,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L340",
       "id": "browser_control_detect_default_browser",
-      "community": 3,
+      "community": 4,
       "norm_label": "_detect_default_browser()"
     },
     {
@@ -1683,7 +1701,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L379",
       "id": "browser_control_browsersession",
-      "community": 3,
+      "community": 4,
       "norm_label": "_browsersession"
     },
     {
@@ -1692,7 +1710,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L385",
       "id": "browser_control_browsersession_init",
-      "community": 3,
+      "community": 4,
       "norm_label": ".__init__()"
     },
     {
@@ -1701,7 +1719,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L408",
       "id": "browser_control_browsersession_start",
-      "community": 3,
+      "community": 4,
       "norm_label": ".start()"
     },
     {
@@ -1710,7 +1728,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L419",
       "id": "browser_control_browsersession_run_loop",
-      "community": 3,
+      "community": 4,
       "norm_label": "._run_loop()"
     },
     {
@@ -1719,7 +1737,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L426",
       "id": "browser_control_browsersession_async_init",
-      "community": 3,
+      "community": 4,
       "norm_label": "._async_init()"
     },
     {
@@ -1737,7 +1755,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L435",
       "id": "browser_control_browsersession_close",
-      "community": 3,
+      "community": 4,
       "norm_label": ".close()"
     },
     {
@@ -1746,7 +1764,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L439",
       "id": "browser_control_browsersession_async_close",
-      "community": 3,
+      "community": 4,
       "norm_label": "._async_close()"
     },
     {
@@ -1755,7 +1773,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L454",
       "id": "browser_control_browsersession_launch",
-      "community": 3,
+      "community": 4,
       "norm_label": "._launch()"
     },
     {
@@ -1764,7 +1782,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L535",
       "id": "browser_control_browsersession_get_page",
-      "community": 3,
+      "community": 4,
       "norm_label": "._get_page()"
     },
     {
@@ -1773,7 +1791,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L580",
       "id": "browser_control_browsersession_go_to",
-      "community": 3,
+      "community": 4,
       "norm_label": ".go_to()"
     },
     {
@@ -1782,7 +1800,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L624",
       "id": "browser_control_browsersession_search",
-      "community": 9,
+      "community": 10,
       "norm_label": ".search()"
     },
     {
@@ -1791,7 +1809,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L634",
       "id": "browser_control_browsersession_click",
-      "community": 3,
+      "community": 4,
       "norm_label": ".click()"
     },
     {
@@ -1800,7 +1818,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L649",
       "id": "browser_control_browsersession_type_text",
-      "community": 3,
+      "community": 4,
       "norm_label": ".type_text()"
     },
     {
@@ -1809,7 +1827,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L661",
       "id": "browser_control_browsersession_scroll",
-      "community": 3,
+      "community": 4,
       "norm_label": ".scroll()"
     },
     {
@@ -1827,7 +1845,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L678",
       "id": "browser_control_browsersession_get_text",
-      "community": 3,
+      "community": 4,
       "norm_label": ".get_text()"
     },
     {
@@ -1836,7 +1854,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L686",
       "id": "browser_control_browsersession_get_url",
-      "community": 3,
+      "community": 4,
       "norm_label": ".get_url()"
     },
     {
@@ -1845,7 +1863,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L690",
       "id": "browser_control_browsersession_fill_form",
-      "community": 3,
+      "community": 4,
       "norm_label": ".fill_form()"
     },
     {
@@ -1854,7 +1872,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L703",
       "id": "browser_control_browsersession_smart_click",
-      "community": 3,
+      "community": 4,
       "norm_label": ".smart_click()"
     },
     {
@@ -1863,7 +1881,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L728",
       "id": "browser_control_browsersession_smart_type",
-      "community": 3,
+      "community": 4,
       "norm_label": ".smart_type()"
     },
     {
@@ -1872,7 +1890,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L749",
       "id": "browser_control_browsersession_new_tab",
-      "community": 3,
+      "community": 4,
       "norm_label": ".new_tab()"
     },
     {
@@ -1881,7 +1899,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L758",
       "id": "browser_control_browsersession_close_tab",
-      "community": 3,
+      "community": 4,
       "norm_label": ".close_tab()"
     },
     {
@@ -1890,7 +1908,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L768",
       "id": "browser_control_browsersession_screenshot",
-      "community": 3,
+      "community": 4,
       "norm_label": ".screenshot()"
     },
     {
@@ -1899,7 +1917,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L777",
       "id": "browser_control_browsersession_back",
-      "community": 3,
+      "community": 4,
       "norm_label": ".back()"
     },
     {
@@ -1908,7 +1926,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L785",
       "id": "browser_control_browsersession_forward",
-      "community": 3,
+      "community": 4,
       "norm_label": ".forward()"
     },
     {
@@ -1917,7 +1935,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L793",
       "id": "browser_control_browsersession_reload",
-      "community": 3,
+      "community": 4,
       "norm_label": ".reload()"
     },
     {
@@ -1926,7 +1944,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L801",
       "id": "browser_control_browsersession_close_browser",
-      "community": 3,
+      "community": 4,
       "norm_label": ".close_browser()"
     },
     {
@@ -1935,7 +1953,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L808",
       "id": "browser_control_sessionregistry",
-      "community": 3,
+      "community": 4,
       "norm_label": "_sessionregistry"
     },
     {
@@ -1944,7 +1962,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L811",
       "id": "browser_control_sessionregistry_init",
-      "community": 3,
+      "community": 4,
       "norm_label": ".__init__()"
     },
     {
@@ -1953,7 +1971,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L816",
       "id": "browser_control_sessionregistry_get_or_create",
-      "community": 3,
+      "community": 4,
       "norm_label": "._get_or_create()"
     },
     {
@@ -1962,7 +1980,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L825",
       "id": "browser_control_sessionregistry_get",
-      "community": 7,
+      "community": 3,
       "norm_label": ".get()"
     },
     {
@@ -1971,7 +1989,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L833",
       "id": "browser_control_sessionregistry_switch",
-      "community": 3,
+      "community": 4,
       "norm_label": ".switch()"
     },
     {
@@ -1980,7 +1998,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L839",
       "id": "browser_control_sessionregistry_close_one",
-      "community": 3,
+      "community": 4,
       "norm_label": ".close_one()"
     },
     {
@@ -1989,7 +2007,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L849",
       "id": "browser_control_sessionregistry_close_all",
-      "community": 3,
+      "community": 4,
       "norm_label": ".close_all()"
     },
     {
@@ -1998,7 +2016,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L862",
       "id": "browser_control_sessionregistry_list_sessions",
-      "community": 3,
+      "community": 4,
       "norm_label": ".list_sessions()"
     },
     {
@@ -2007,7 +2025,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L878",
       "id": "browser_control_browser_control",
-      "community": 3,
+      "community": 4,
       "norm_label": "browser_control()"
     },
     {
@@ -2016,7 +2034,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L976",
       "id": "browser_control_log",
-      "community": 3,
+      "community": 4,
       "norm_label": "_log()"
     },
     {
@@ -2024,7 +2042,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L1",
-      "community": 3,
+      "community": 4,
       "norm_label": "browser_control.py  \u2014  jarvis browser action module ===========================",
       "id": "browser_control_rationale_1"
     },
@@ -2033,7 +2051,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L44",
-      "community": 3,
+      "community": 4,
       "norm_label": "bare words like \"instagram\" \u2192 \"https://instagram.com\"     domains like \"instagr",
       "id": "browser_control_rationale_44"
     },
@@ -2042,7 +2060,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L380",
-      "community": 3,
+      "community": 4,
       "norm_label": "bir taray\u0131c\u0131 ornegi icin tam oturum.     tum taray\u0131c\u0131lar launch_persistent_cont",
       "id": "browser_control_rationale_380"
     },
@@ -2051,7 +2069,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L455",
-      "community": 3,
+      "community": 4,
       "norm_label": "taray\u0131c\u0131y\u0131 baslat\u0131r. once gercek kullan\u0131c\u0131 profilini dener, kilitliyse jarvis pr",
       "id": "browser_control_rationale_455"
     },
@@ -2060,7 +2078,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L536",
-      "community": 3,
+      "community": 4,
       "norm_label": "returns (page, is_new_tab)",
       "id": "browser_control_rationale_536"
     },
@@ -2069,7 +2087,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L581",
-      "community": 3,
+      "community": 4,
       "norm_label": "navigate to a url.         when _also_open_in_real is true (chrome was already",
       "id": "browser_control_rationale_581"
     },
@@ -2078,7 +2096,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L809",
-      "community": 3,
+      "community": 4,
       "norm_label": "tum aktif taray\u0131c\u0131 oturumlar\u0131n\u0131 yonetir.",
       "id": "browser_control_rationale_809"
     },
@@ -2087,7 +2105,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\browser_control.py",
       "source_location": "L884",
-      "community": 3,
+      "community": 4,
       "norm_label": "desteklenen action'lar:         go_to, search, setup, click, type, scroll, fill",
       "id": "browser_control_rationale_884"
     },
@@ -2097,7 +2115,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_code_helper_py",
-      "community": 6,
+      "community": 8,
       "norm_label": "code_helper.py"
     },
     {
@@ -2106,7 +2124,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L17",
       "id": "code_helper_get_gemini",
-      "community": 6,
+      "community": 8,
       "norm_label": "_get_gemini()"
     },
     {
@@ -2115,7 +2133,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L23",
       "id": "code_helper_clean_code",
-      "community": 6,
+      "community": 8,
       "norm_label": "_clean_code()"
     },
     {
@@ -2124,7 +2142,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L30",
       "id": "code_helper_resolve_save_path",
-      "community": 6,
+      "community": 8,
       "norm_label": "_resolve_save_path()"
     },
     {
@@ -2133,7 +2151,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L47",
       "id": "code_helper_read_file",
-      "community": 6,
+      "community": 8,
       "norm_label": "_read_file()"
     },
     {
@@ -2142,7 +2160,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L59",
       "id": "code_helper_save_file",
-      "community": 6,
+      "community": 8,
       "norm_label": "_save_file()"
     },
     {
@@ -2151,7 +2169,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L68",
       "id": "code_helper_preview",
-      "community": 6,
+      "community": 8,
       "norm_label": "_preview()"
     },
     {
@@ -2160,7 +2178,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L75",
       "id": "code_helper_has_error",
-      "community": 6,
+      "community": 8,
       "norm_label": "_has_error()"
     },
     {
@@ -2169,7 +2187,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L81",
       "id": "code_helper_take_screenshot",
-      "community": 6,
+      "community": 8,
       "norm_label": "_take_screenshot()"
     },
     {
@@ -2178,7 +2196,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L94",
       "id": "code_helper_image_to_base64",
-      "community": 6,
+      "community": 8,
       "norm_label": "_image_to_base64()"
     },
     {
@@ -2187,7 +2205,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L99",
       "id": "code_helper_detect_intent",
-      "community": 6,
+      "community": 8,
       "norm_label": "_detect_intent()"
     },
     {
@@ -2196,7 +2214,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L138",
       "id": "code_helper_write",
-      "community": 6,
+      "community": 8,
       "norm_label": "_write()"
     },
     {
@@ -2205,7 +2223,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L162",
       "id": "code_helper_fix_code",
-      "community": 6,
+      "community": 8,
       "norm_label": "_fix_code()"
     },
     {
@@ -2214,7 +2232,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L182",
       "id": "code_helper_run_file",
-      "community": 6,
+      "community": 8,
       "norm_label": "_run_file()"
     },
     {
@@ -2223,7 +2241,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L218",
       "id": "code_helper_build",
-      "community": 6,
+      "community": 8,
       "norm_label": "_build()"
     },
     {
@@ -2232,7 +2250,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L271",
       "id": "code_helper_write_action",
-      "community": 6,
+      "community": 8,
       "norm_label": "_write_action()"
     },
     {
@@ -2241,7 +2259,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L284",
       "id": "code_helper_edit_action",
-      "community": 6,
+      "community": 8,
       "norm_label": "_edit_action()"
     },
     {
@@ -2250,7 +2268,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L320",
       "id": "code_helper_explain_action",
-      "community": 6,
+      "community": 8,
       "norm_label": "_explain_action()"
     },
     {
@@ -2259,7 +2277,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L348",
       "id": "code_helper_run_action",
-      "community": 6,
+      "community": 8,
       "norm_label": "_run_action()"
     },
     {
@@ -2268,7 +2286,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L359",
       "id": "code_helper_optimize_action",
-      "community": 6,
+      "community": 8,
       "norm_label": "_optimize_action()"
     },
     {
@@ -2277,7 +2295,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L415",
       "id": "code_helper_screen_debug_action",
-      "community": 6,
+      "community": 8,
       "norm_label": "_screen_debug_action()"
     },
     {
@@ -2286,7 +2304,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L500",
       "id": "code_helper_code_helper",
-      "community": 6,
+      "community": 8,
       "norm_label": "code_helper()"
     },
     {
@@ -2294,7 +2312,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\code_helper.py",
       "source_location": "L507",
-      "community": 6,
+      "community": 8,
       "norm_label": "called from main.py.      parameters:         action      : write | edit | ex",
       "id": "code_helper_rationale_507"
     },
@@ -2304,7 +2322,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_computer_control_py",
-      "community": 8,
+      "community": 6,
       "norm_label": "computer_control.py"
     },
     {
@@ -2313,7 +2331,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L34",
       "id": "computer_control_get_os",
-      "community": 8,
+      "community": 6,
       "norm_label": "_get_os()"
     },
     {
@@ -2322,7 +2340,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L37",
       "id": "computer_control_get_api_key",
-      "community": 8,
+      "community": 6,
       "norm_label": "_get_api_key()"
     },
     {
@@ -2331,7 +2349,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L40",
       "id": "computer_control_safe_screenshot_path",
-      "community": 8,
+      "community": 6,
       "norm_label": "_safe_screenshot_path()"
     },
     {
@@ -2340,7 +2358,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L53",
       "id": "computer_control_require_pyautogui",
-      "community": 8,
+      "community": 6,
       "norm_label": "_require_pyautogui()"
     },
     {
@@ -2349,7 +2367,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L68",
       "id": "computer_control_random_data",
-      "community": 8,
+      "community": 6,
       "norm_label": "_random_data()"
     },
     {
@@ -2358,7 +2376,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L121",
       "id": "computer_control_user_profile",
-      "community": 8,
+      "community": 6,
       "norm_label": "_user_profile()"
     },
     {
@@ -2367,7 +2385,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L132",
       "id": "computer_control_type",
-      "community": 8,
+      "community": 6,
       "norm_label": "_type()"
     },
     {
@@ -2376,7 +2394,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L140",
       "id": "computer_control_smart_type",
-      "community": 8,
+      "community": 6,
       "norm_label": "_smart_type()"
     },
     {
@@ -2385,7 +2403,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L156",
       "id": "computer_control_click",
-      "community": 8,
+      "community": 6,
       "norm_label": "_click()"
     },
     {
@@ -2394,7 +2412,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L165",
       "id": "computer_control_hotkey",
-      "community": 8,
+      "community": 6,
       "norm_label": "_hotkey()"
     },
     {
@@ -2403,7 +2421,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L171",
       "id": "computer_control_press",
-      "community": 8,
+      "community": 6,
       "norm_label": "_press()"
     },
     {
@@ -2412,7 +2430,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L177",
       "id": "computer_control_scroll",
-      "community": 8,
+      "community": 6,
       "norm_label": "_scroll()"
     },
     {
@@ -2421,7 +2439,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L185",
       "id": "computer_control_move",
-      "community": 8,
+      "community": 6,
       "norm_label": "_move()"
     },
     {
@@ -2430,7 +2448,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L191",
       "id": "computer_control_drag",
-      "community": 8,
+      "community": 6,
       "norm_label": "_drag()"
     },
     {
@@ -2439,7 +2457,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L198",
       "id": "computer_control_clipboard_get",
-      "community": 8,
+      "community": 6,
       "norm_label": "_clipboard_get()"
     },
     {
@@ -2448,7 +2466,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L206",
       "id": "computer_control_clipboard_paste",
-      "community": 8,
+      "community": 6,
       "norm_label": "_clipboard_paste()"
     },
     {
@@ -2457,7 +2475,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L216",
       "id": "computer_control_screenshot",
-      "community": 8,
+      "community": 6,
       "norm_label": "_screenshot()"
     },
     {
@@ -2466,7 +2484,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L224",
       "id": "computer_control_clear_field",
-      "community": 8,
+      "community": 6,
       "norm_label": "_clear_field()"
     },
     {
@@ -2475,7 +2493,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L231",
       "id": "computer_control_focus_window",
-      "community": 8,
+      "community": 6,
       "norm_label": "_focus_window()"
     },
     {
@@ -2484,7 +2502,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L287",
       "id": "computer_control_control_ui",
-      "community": 8,
+      "community": 6,
       "norm_label": "_control_ui()"
     },
     {
@@ -2493,7 +2511,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L373",
       "id": "computer_control_verify_window_state",
-      "community": 8,
+      "community": 6,
       "norm_label": "_verify_window_state()"
     },
     {
@@ -2502,7 +2520,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L383",
       "id": "computer_control_screen_find",
-      "community": 8,
+      "community": 6,
       "norm_label": "_screen_find()"
     },
     {
@@ -2511,7 +2529,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L429",
       "id": "computer_control_computer_control",
-      "community": 8,
+      "community": 6,
       "norm_label": "computer_control()"
     },
     {
@@ -2519,27 +2537,27 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L122",
-      "id": "computer_control_rationale_122",
-      "community": 8,
-      "norm_label": "read identity fields from long-term memory."
+      "community": 6,
+      "norm_label": "read identity fields from long-term memory.",
+      "id": "computer_control_rationale_122"
     },
     {
       "label": "Check if a window with the given title exists and is active.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L374",
-      "id": "computer_control_rationale_374",
-      "community": 8,
-      "norm_label": "check if a window with the given title exists and is active."
+      "community": 6,
+      "norm_label": "check if a window with the given title exists and is active.",
+      "id": "computer_control_rationale_374"
     },
     {
       "label": "Dispatch table for all computer control actions.      parameters keys (all opt",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L435",
-      "id": "computer_control_rationale_435",
-      "community": 8,
-      "norm_label": "dispatch table for all computer control actions.      parameters keys (all opt"
+      "community": 6,
+      "norm_label": "dispatch table for all computer control actions.      parameters keys (all opt",
+      "id": "computer_control_rationale_435"
     },
     {
       "label": "computer_settings.py",
@@ -2772,7 +2790,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_settings.py",
       "source_location": "L259",
       "id": "computer_settings_go_back",
-      "community": 3,
+      "community": 1,
       "norm_label": "go_back()"
     },
     {
@@ -2781,7 +2799,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_settings.py",
       "source_location": "L263",
       "id": "computer_settings_go_forward",
-      "community": 3,
+      "community": 1,
       "norm_label": "go_forward()"
     },
     {
@@ -2889,7 +2907,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_settings.py",
       "source_location": "L304",
       "id": "computer_settings_copy",
-      "community": 8,
+      "community": 6,
       "norm_label": "copy()"
     },
     {
@@ -3096,7 +3114,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_desktop_py",
-      "community": 13,
+      "community": 3,
       "norm_label": "desktop.py"
     },
     {
@@ -3105,7 +3123,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L22",
       "id": "desktop_get_api_key",
-      "community": 13,
+      "community": 3,
       "norm_label": "_get_api_key()"
     },
     {
@@ -3114,7 +3132,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L28",
       "id": "desktop_get_desktop",
-      "community": 13,
+      "community": 3,
       "norm_label": "_get_desktop()"
     },
     {
@@ -3123,7 +3141,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L35",
       "id": "desktop_build_sandbox",
-      "community": 13,
+      "community": 3,
       "norm_label": "_build_sandbox()"
     },
     {
@@ -3132,7 +3150,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L80",
       "id": "desktop_execute_generated_code",
-      "community": 13,
+      "community": 3,
       "norm_label": "_execute_generated_code()"
     },
     {
@@ -3141,7 +3159,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L101",
       "id": "desktop_ask_gemini_for_desktop_action",
-      "community": 13,
+      "community": 3,
       "norm_label": "_ask_gemini_for_desktop_action()"
     },
     {
@@ -3150,7 +3168,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L152",
       "id": "desktop_set_wallpaper",
-      "community": 13,
+      "community": 3,
       "norm_label": "set_wallpaper()"
     },
     {
@@ -3159,7 +3177,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L236",
       "id": "desktop_set_wallpaper_from_url",
-      "community": 13,
+      "community": 3,
       "norm_label": "set_wallpaper_from_url()"
     },
     {
@@ -3168,7 +3186,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L252",
       "id": "desktop_get_current_wallpaper",
-      "community": 13,
+      "community": 3,
       "norm_label": "get_current_wallpaper()"
     },
     {
@@ -3177,7 +3195,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L305",
       "id": "desktop_organize_desktop",
-      "community": 13,
+      "community": 3,
       "norm_label": "organize_desktop()"
     },
     {
@@ -3186,7 +3204,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L348",
       "id": "desktop_list_desktop",
-      "community": 13,
+      "community": 3,
       "norm_label": "list_desktop()"
     },
     {
@@ -3195,7 +3213,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L373",
       "id": "desktop_clean_desktop",
-      "community": 13,
+      "community": 3,
       "norm_label": "clean_desktop()"
     },
     {
@@ -3204,7 +3222,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L394",
       "id": "desktop_get_desktop_stats",
-      "community": 13,
+      "community": 3,
       "norm_label": "get_desktop_stats()"
     },
     {
@@ -3213,7 +3231,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L411",
       "id": "desktop_desktop_control",
-      "community": 13,
+      "community": 3,
       "norm_label": "desktop_control()"
     },
     {
@@ -3221,7 +3239,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\desktop.py",
       "source_location": "L417",
-      "community": 13,
+      "community": 3,
       "norm_label": "parameters:         action : wallpaper | wallpaper_url | current_wallpaper |",
       "id": "desktop_rationale_417"
     },
@@ -3645,7 +3663,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_flight_finder_py",
-      "community": 4,
+      "community": 3,
       "norm_label": "flight_finder.py"
     },
     {
@@ -3654,7 +3672,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L27",
       "id": "flight_finder_parse_date",
-      "community": 4,
+      "community": 3,
       "norm_label": "_parse_date()"
     },
     {
@@ -3663,7 +3681,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L85",
       "id": "flight_finder_build_google_flights_url",
-      "community": 4,
+      "community": 3,
       "norm_label": "_build_google_flights_url()"
     },
     {
@@ -3672,7 +3690,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L113",
       "id": "flight_finder_search_flights_browser",
-      "community": 4,
+      "community": 3,
       "norm_label": "_search_flights_browser()"
     },
     {
@@ -3681,7 +3699,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L135",
       "id": "flight_finder_parse_flights_with_gemini",
-      "community": 4,
+      "community": 3,
       "norm_label": "_parse_flights_with_gemini()"
     },
     {
@@ -3690,7 +3708,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L171",
       "id": "flight_finder_format_spoken",
-      "community": 4,
+      "community": 3,
       "norm_label": "_format_spoken()"
     },
     {
@@ -3699,7 +3717,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L218",
       "id": "flight_finder_format_text_report",
-      "community": 4,
+      "community": 3,
       "norm_label": "_format_text_report()"
     },
     {
@@ -3708,7 +3726,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L260",
       "id": "flight_finder_save_to_desktop",
-      "community": 4,
+      "community": 3,
       "norm_label": "_save_to_desktop()"
     },
     {
@@ -3717,7 +3735,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\flight_finder.py",
       "source_location": "L283",
       "id": "flight_finder_flight_finder",
-      "community": 4,
+      "community": 3,
       "norm_label": "flight_finder()"
     },
     {
@@ -4230,7 +4248,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\screen_processor.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_screen_processor_py",
-      "community": 4,
+      "community": 3,
       "norm_label": "screen_processor.py"
     },
     {
@@ -4239,7 +4257,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\screen_processor.py",
       "source_location": "L23",
       "id": "screen_processor_compress",
-      "community": 4,
+      "community": 3,
       "norm_label": "_compress()"
     },
     {
@@ -4248,7 +4266,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\screen_processor.py",
       "source_location": "L37",
       "id": "screen_processor_capture_screen",
-      "community": 4,
+      "community": 3,
       "norm_label": "_capture_screen()"
     },
     {
@@ -4257,7 +4275,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\screen_processor.py",
       "source_location": "L49",
       "id": "screen_processor_screen_process",
-      "community": 4,
+      "community": 3,
       "norm_label": "screen_process()"
     },
     {
@@ -4419,7 +4437,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\weather_report.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_weather_report_py",
-      "community": 6,
+      "community": 2,
       "norm_label": "weather_report.py"
     },
     {
@@ -4428,7 +4446,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\weather_report.py",
       "source_location": "L5",
       "id": "weather_report_weather_action",
-      "community": 6,
+      "community": 2,
       "norm_label": "weather_action()"
     },
     {
@@ -4437,7 +4455,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\weather_report.py",
       "source_location": "L45",
       "id": "weather_report_log",
-      "community": 6,
+      "community": 2,
       "norm_label": "_log()"
     },
     {
@@ -4446,7 +4464,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\web_search.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_web_search_py",
-      "community": 7,
+      "community": 3,
       "norm_label": "web_search.py"
     },
     {
@@ -4455,7 +4473,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\web_search.py",
       "source_location": "L8",
       "id": "web_search_gemini_search",
-      "community": 7,
+      "community": 3,
       "norm_label": "_gemini_search()"
     },
     {
@@ -4464,7 +4482,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\web_search.py",
       "source_location": "L29",
       "id": "web_search_ddg_search",
-      "community": 7,
+      "community": 3,
       "norm_label": "_ddg_search()"
     },
     {
@@ -4473,7 +4491,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\web_search.py",
       "source_location": "L46",
       "id": "web_search_format_ddg",
-      "community": 7,
+      "community": 3,
       "norm_label": "_format_ddg()"
     },
     {
@@ -4482,7 +4500,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\web_search.py",
       "source_location": "L58",
       "id": "web_search_compare",
-      "community": 7,
+      "community": 3,
       "norm_label": "_compare()"
     },
     {
@@ -4491,7 +4509,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\web_search.py",
       "source_location": "L84",
       "id": "web_search_web_search",
-      "community": 7,
+      "community": 3,
       "norm_label": "web_search()"
     },
     {
@@ -4500,7 +4518,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_actions_youtube_video_py",
-      "community": 9,
+      "community": 10,
       "norm_label": "youtube_video.py"
     },
     {
@@ -4509,7 +4527,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L45",
       "id": "youtube_video_open_url",
-      "community": 9,
+      "community": 10,
       "norm_label": "_open_url()"
     },
     {
@@ -4518,7 +4536,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L56",
       "id": "youtube_video_scrape_first_video_url",
-      "community": 9,
+      "community": 10,
       "norm_label": "_scrape_first_video_url()"
     },
     {
@@ -4527,7 +4545,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L88",
       "id": "youtube_video_extract_video_id",
-      "community": 9,
+      "community": 10,
       "norm_label": "_extract_video_id()"
     },
     {
@@ -4536,7 +4554,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L95",
       "id": "youtube_video_is_valid_youtube_url",
-      "community": 9,
+      "community": 10,
       "norm_label": "_is_valid_youtube_url()"
     },
     {
@@ -4545,7 +4563,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L99",
       "id": "youtube_video_ask_for_url",
-      "community": 9,
+      "community": 10,
       "norm_label": "_ask_for_url()"
     },
     {
@@ -4554,7 +4572,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L116",
       "id": "youtube_video_get_transcript",
-      "community": 9,
+      "community": 10,
       "norm_label": "_get_transcript()"
     },
     {
@@ -4563,7 +4581,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L149",
       "id": "youtube_video_summarize_with_gemini",
-      "community": 9,
+      "community": 10,
       "norm_label": "_summarize_with_gemini()"
     },
     {
@@ -4572,7 +4590,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L172",
       "id": "youtube_video_save_summary",
-      "community": 9,
+      "community": 10,
       "norm_label": "_save_summary()"
     },
     {
@@ -4581,7 +4599,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L201",
       "id": "youtube_video_scrape_video_info",
-      "community": 9,
+      "community": 10,
       "norm_label": "_scrape_video_info()"
     },
     {
@@ -4590,7 +4608,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L234",
       "id": "youtube_video_scrape_trending",
-      "community": 9,
+      "community": 3,
       "norm_label": "_scrape_trending()"
     },
     {
@@ -4599,7 +4617,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L260",
       "id": "youtube_video_handle_play",
-      "community": 9,
+      "community": 10,
       "norm_label": "_handle_play()"
     },
     {
@@ -4608,7 +4626,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L287",
       "id": "youtube_video_handle_summarize",
-      "community": 9,
+      "community": 10,
       "norm_label": "_handle_summarize()"
     },
     {
@@ -4617,7 +4635,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L328",
       "id": "youtube_video_handle_get_info",
-      "community": 9,
+      "community": 10,
       "norm_label": "_handle_get_info()"
     },
     {
@@ -4626,7 +4644,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L359",
       "id": "youtube_video_handle_trending",
-      "community": 9,
+      "community": 3,
       "norm_label": "_handle_trending()"
     },
     {
@@ -4635,7 +4653,7 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\youtube_video.py",
       "source_location": "L390",
       "id": "youtube_video_youtube_video",
-      "community": 6,
+      "community": 2,
       "norm_label": "youtube_video()"
     },
     {
@@ -4644,7 +4662,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\error_handler.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_agent_error_handler_py",
-      "community": 4,
+      "community": 3,
       "norm_label": "error_handler.py"
     },
     {
@@ -4653,7 +4671,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\error_handler.py",
       "source_location": "L11",
       "id": "error_handler_errordecision",
-      "community": 4,
+      "community": 3,
       "norm_label": "errordecision"
     },
     {
@@ -4662,7 +4680,7 @@
       "source_file": "",
       "source_location": "",
       "id": "enum",
-      "community": 4,
+      "community": 3,
       "norm_label": "enum"
     },
     {
@@ -4671,7 +4689,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\error_handler.py",
       "source_location": "L47",
       "id": "error_handler_analyze_error",
-      "community": 4,
+      "community": 3,
       "norm_label": "analyze_error()"
     },
     {
@@ -4680,7 +4698,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\error_handler.py",
       "source_location": "L134",
       "id": "error_handler_generate_fix",
-      "community": 4,
+      "community": 3,
       "norm_label": "generate_fix()"
     },
     {
@@ -4688,7 +4706,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\agent\\error_handler.py",
       "source_location": "L53",
-      "community": 4,
+      "community": 3,
       "norm_label": "analyzes a failed step and returns a recovery decision.      args:         st",
       "id": "error_handler_rationale_53"
     },
@@ -4697,7 +4715,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\agent\\error_handler.py",
       "source_location": "L135",
-      "community": 4,
+      "community": 3,
       "norm_label": "when decision is replan and a fix suggestion exists,     generates a replacemen",
       "id": "error_handler_rationale_135"
     },
@@ -4707,7 +4725,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_agent_executor_py",
-      "community": 4,
+      "community": 3,
       "norm_label": "executor.py"
     },
     {
@@ -4716,7 +4734,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L19",
       "id": "executor_run_generated_code",
-      "community": 4,
+      "community": 3,
       "norm_label": "_run_generated_code()"
     },
     {
@@ -4725,7 +4743,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L100",
       "id": "executor_inject_context",
-      "community": 4,
+      "community": 3,
       "norm_label": "_inject_context()"
     },
     {
@@ -4734,7 +4752,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L120",
       "id": "executor_detect_language",
-      "community": 4,
+      "community": 3,
       "norm_label": "_detect_language()"
     },
     {
@@ -4743,7 +4761,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L135",
       "id": "executor_translate_to_goal_language",
-      "community": 4,
+      "community": 3,
       "norm_label": "_translate_to_goal_language()"
     },
     {
@@ -4752,7 +4770,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L164",
       "id": "executor_call_tool",
-      "community": 4,
+      "community": 3,
       "norm_label": "_call_tool()"
     },
     {
@@ -4761,7 +4779,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L239",
       "id": "executor_agentexecutor",
-      "community": 4,
+      "community": 3,
       "norm_label": "agentexecutor"
     },
     {
@@ -4770,7 +4788,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L243",
       "id": "executor_agentexecutor_execute",
-      "community": 4,
+      "community": 3,
       "norm_label": ".execute()"
     },
     {
@@ -4779,7 +4797,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L367",
       "id": "executor_agentexecutor_summarize",
-      "community": 4,
+      "community": 3,
       "norm_label": "._summarize()"
     },
     {
@@ -4788,7 +4806,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\planner.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_agent_planner_py",
-      "community": 4,
+      "community": 3,
       "norm_label": "planner.py"
     },
     {
@@ -4797,7 +4815,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\planner.py",
       "source_location": "L164",
       "id": "planner_create_plan",
-      "community": 4,
+      "community": 3,
       "norm_label": "create_plan()"
     },
     {
@@ -4806,7 +4824,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\planner.py",
       "source_location": "L208",
       "id": "planner_fallback_plan",
-      "community": 4,
+      "community": 3,
       "norm_label": "_fallback_plan()"
     },
     {
@@ -4815,7 +4833,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\planner.py",
       "source_location": "L224",
       "id": "planner_replan",
-      "community": 4,
+      "community": 3,
       "norm_label": "replan()"
     },
     {
@@ -4824,7 +4842,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_agent_task_queue_py",
-      "community": 4,
+      "community": 3,
       "norm_label": "task_queue.py"
     },
     {
@@ -4833,7 +4851,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L9",
       "id": "task_queue_taskstatus",
-      "community": 4,
+      "community": 3,
       "norm_label": "taskstatus"
     },
     {
@@ -4851,7 +4869,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L24",
       "id": "task_queue_task",
-      "community": 4,
+      "community": 3,
       "norm_label": "task"
     },
     {
@@ -4860,7 +4878,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L37",
       "id": "task_queue_taskqueue",
-      "community": 4,
+      "community": 3,
       "norm_label": "taskqueue"
     },
     {
@@ -4869,7 +4887,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L38",
       "id": "task_queue_taskqueue_init",
-      "community": 4,
+      "community": 3,
       "norm_label": ".__init__()"
     },
     {
@@ -4878,7 +4896,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L49",
       "id": "task_queue_taskqueue_get_executor",
-      "community": 4,
+      "community": 3,
       "norm_label": "._get_executor()"
     },
     {
@@ -4887,7 +4905,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L55",
       "id": "task_queue_taskqueue_start",
-      "community": 4,
+      "community": 3,
       "norm_label": ".start()"
     },
     {
@@ -4896,7 +4914,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L67",
       "id": "task_queue_taskqueue_stop",
-      "community": 4,
+      "community": 3,
       "norm_label": ".stop()"
     },
     {
@@ -4905,7 +4923,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L73",
       "id": "task_queue_taskqueue_submit",
-      "community": 4,
+      "community": 3,
       "norm_label": ".submit()"
     },
     {
@@ -4914,7 +4932,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L100",
       "id": "task_queue_taskqueue_cancel",
-      "community": 4,
+      "community": 3,
       "norm_label": ".cancel()"
     },
     {
@@ -4923,7 +4941,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L114",
       "id": "task_queue_taskqueue_get_status",
-      "community": 4,
+      "community": 3,
       "norm_label": ".get_status()"
     },
     {
@@ -4932,7 +4950,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L127",
       "id": "task_queue_taskqueue_get_all_statuses",
-      "community": 4,
+      "community": 3,
       "norm_label": ".get_all_statuses()"
     },
     {
@@ -4941,7 +4959,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L138",
       "id": "task_queue_taskqueue_pending_count",
-      "community": 4,
+      "community": 3,
       "norm_label": ".pending_count()"
     },
     {
@@ -4950,7 +4968,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L142",
       "id": "task_queue_taskqueue_worker_loop",
-      "community": 4,
+      "community": 3,
       "norm_label": "._worker_loop()"
     },
     {
@@ -4959,7 +4977,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L166",
       "id": "task_queue_taskqueue_next_task",
-      "community": 4,
+      "community": 3,
       "norm_label": "._next_task()"
     },
     {
@@ -4968,7 +4986,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L174",
       "id": "task_queue_taskqueue_run_task",
-      "community": 4,
+      "community": 3,
       "norm_label": "._run_task()"
     },
     {
@@ -4977,7 +4995,7 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\task_queue.py",
       "source_location": "L215",
       "id": "task_queue_get_queue",
-      "community": 4,
+      "community": 3,
       "norm_label": "get_queue()"
     },
     {
@@ -4986,7 +5004,7 @@
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_config_init_py",
-      "community": 9,
+      "community": 10,
       "norm_label": "__init__.py"
     },
     {
@@ -4995,7 +5013,7 @@
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L4",
       "id": "init_get_config",
-      "community": 10,
+      "community": 9,
       "norm_label": "get_config()"
     },
     {
@@ -5004,7 +5022,7 @@
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L12",
       "id": "init_get_os",
-      "community": 9,
+      "community": 10,
       "norm_label": "get_os()"
     },
     {
@@ -5013,7 +5031,7 @@
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L16",
       "id": "init_is_windows",
-      "community": 9,
+      "community": 10,
       "norm_label": "is_windows()"
     },
     {
@@ -5022,7 +5040,7 @@
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L17",
       "id": "init_is_mac",
-      "community": 9,
+      "community": 10,
       "norm_label": "is_mac()"
     },
     {
@@ -5031,7 +5049,7 @@
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L18",
       "id": "init_is_linux",
-      "community": 9,
+      "community": 10,
       "norm_label": "is_linux()"
     },
     {
@@ -5039,7 +5057,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L5",
-      "community": 10,
+      "community": 9,
       "norm_label": "legacy compatibility function. try to use config_manager directly.",
       "id": "init_rationale_5"
     },
@@ -5048,7 +5066,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\config\\__init__.py",
       "source_location": "L13",
-      "community": 9,
+      "community": 10,
       "norm_label": "returns: 'windows' | 'mac' | 'linux",
       "id": "init_rationale_13"
     },
@@ -5058,7 +5076,7 @@
       "source_file": "E:\\Jarvis-MK37\\core\\system_monitor.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_core_system_monitor_py",
-      "community": 6,
+      "community": 14,
       "norm_label": "system_monitor.py"
     },
     {
@@ -5067,7 +5085,7 @@
       "source_file": "E:\\Jarvis-MK37\\core\\system_monitor.py",
       "source_location": "L5",
       "id": "system_monitor_get_cpu_usage",
-      "community": 6,
+      "community": 14,
       "norm_label": "get_cpu_usage()"
     },
     {
@@ -5076,7 +5094,7 @@
       "source_file": "E:\\Jarvis-MK37\\core\\system_monitor.py",
       "source_location": "L8",
       "id": "system_monitor_get_ram_usage",
-      "community": 6,
+      "community": 14,
       "norm_label": "get_ram_usage()"
     },
     {
@@ -5085,7 +5103,7 @@
       "source_file": "E:\\Jarvis-MK37\\core\\system_monitor.py",
       "source_location": "L11",
       "id": "system_monitor_get_disk_usage",
-      "community": 6,
+      "community": 14,
       "norm_label": "get_disk_usage()"
     },
     {
@@ -5094,7 +5112,7 @@
       "source_file": "E:\\Jarvis-MK37\\core\\system_monitor.py",
       "source_location": "L18",
       "id": "system_monitor_get_top_processes",
-      "community": 6,
+      "community": 14,
       "norm_label": "get_top_processes()"
     },
     {
@@ -5103,7 +5121,7 @@
       "source_file": "E:\\Jarvis-MK37\\core\\system_monitor.py",
       "source_location": "L29",
       "id": "system_monitor_get_network_usage",
-      "community": 6,
+      "community": 14,
       "norm_label": "get_network_usage()"
     },
     {
@@ -5112,7 +5130,7 @@
       "source_file": "E:\\Jarvis-MK37\\core\\system_monitor.py",
       "source_location": "L38",
       "id": "system_monitor_get_system_summary",
-      "community": 6,
+      "community": 14,
       "norm_label": "get_system_summary()"
     },
     {
@@ -5128,7 +5146,7 @@
       "label": "VisionManager",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L21",
+      "source_location": "L24",
       "id": "vision_manager_visionmanager",
       "community": 2,
       "norm_label": "visionmanager"
@@ -5137,7 +5155,7 @@
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L27",
+      "source_location": "L30",
       "id": "vision_manager_visionmanager_init",
       "community": 2,
       "norm_label": ".__init__()"
@@ -5146,7 +5164,7 @@
       "label": ".get_latest_jpeg()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L38",
+      "source_location": "L56",
       "id": "vision_manager_visionmanager_get_latest_jpeg",
       "community": 2,
       "norm_label": ".get_latest_jpeg()"
@@ -5155,7 +5173,7 @@
       "label": ".start()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L43",
+      "source_location": "L61",
       "id": "vision_manager_visionmanager_start",
       "community": 0,
       "norm_label": ".start()"
@@ -5164,25 +5182,34 @@
       "label": ".stop()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L55",
+      "source_location": "L73",
       "id": "vision_manager_visionmanager_stop",
-      "community": 3,
+      "community": 2,
       "norm_label": ".stop()"
     },
     {
       "label": "._run_loop()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L61",
+      "source_location": "L79",
       "id": "vision_manager_visionmanager_run_loop",
       "community": 2,
       "norm_label": "._run_loop()"
     },
     {
+      "label": "._process_gestures()",
+      "file_type": "code",
+      "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
+      "source_location": "L132",
+      "id": "vision_manager_visionmanager_process_gestures",
+      "community": 2,
+      "norm_label": "._process_gestures()"
+    },
+    {
       "label": "._open_camera()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L110",
+      "source_location": "L171",
       "id": "vision_manager_visionmanager_open_camera",
       "community": 2,
       "norm_label": "._open_camera()"
@@ -5191,7 +5218,7 @@
       "label": "start_vision()",
       "file_type": "code",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L134",
+      "source_location": "L195",
       "id": "vision_manager_start_vision",
       "community": 2,
       "norm_label": "start_vision()"
@@ -5206,22 +5233,22 @@
       "id": "vision_manager_rationale_1"
     },
     {
-      "label": "Runs the camera in a background thread.     Pushes frames to JarvisUI for visual",
+      "label": "Runs the camera in a background thread.     Pushes frames to JarvisUI and perfor",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L22",
+      "source_location": "L25",
       "community": 2,
-      "norm_label": "runs the camera in a background thread.     pushes frames to jarvisui for visual",
-      "id": "vision_manager_rationale_22"
+      "norm_label": "runs the camera in a background thread.     pushes frames to jarvisui and perfor",
+      "id": "vision_manager_rationale_25"
     },
     {
       "label": "Returns the most recent camera frame as JPEG bytes, or None.",
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L39",
+      "source_location": "L57",
       "community": 2,
       "norm_label": "returns the most recent camera frame as jpeg bytes, or none.",
-      "id": "vision_manager_rationale_39"
+      "id": "vision_manager_rationale_57"
     },
     {
       "label": "config_manager.py",
@@ -5229,7 +5256,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_memory_config_manager_py",
-      "community": 10,
+      "community": 9,
       "norm_label": "config_manager.py"
     },
     {
@@ -5238,7 +5265,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L8",
       "id": "config_manager_get_base_dir",
-      "community": 10,
+      "community": 9,
       "norm_label": "get_base_dir()"
     },
     {
@@ -5247,7 +5274,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L21",
       "id": "config_manager_ensure_config_dir",
-      "community": 10,
+      "community": 9,
       "norm_label": "ensure_config_dir()"
     },
     {
@@ -5256,7 +5283,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L24",
       "id": "config_manager_config_exists",
-      "community": 10,
+      "community": 9,
       "norm_label": "config_exists()"
     },
     {
@@ -5265,7 +5292,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L28",
       "id": "config_manager_save_api_keys",
-      "community": 10,
+      "community": 9,
       "norm_label": "save_api_keys()"
     },
     {
@@ -5274,7 +5301,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L41",
       "id": "config_manager_save_os_system",
-      "community": 10,
+      "community": 9,
       "norm_label": "save_os_system()"
     },
     {
@@ -5283,7 +5310,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L48",
       "id": "config_manager_cleanup_legacy_json",
-      "community": 10,
+      "community": 9,
       "norm_label": "_cleanup_legacy_json()"
     },
     {
@@ -5292,7 +5319,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L62",
       "id": "config_manager_get_config_value",
-      "community": 10,
+      "community": 9,
       "norm_label": "get_config_value()"
     },
     {
@@ -5301,7 +5328,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L78",
       "id": "config_manager_save_config_value",
-      "community": 10,
+      "community": 9,
       "norm_label": "save_config_value()"
     },
     {
@@ -5310,7 +5337,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L90",
       "id": "config_manager_get_gemini_key",
-      "community": 4,
+      "community": 3,
       "norm_label": "get_gemini_key()"
     },
     {
@@ -5328,7 +5355,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L131",
       "id": "config_manager_is_configured",
-      "community": 10,
+      "community": 9,
       "norm_label": "is_configured()"
     },
     {
@@ -5336,7 +5363,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L25",
-      "community": 10,
+      "community": 9,
       "norm_label": "check if the system is configured (either .env or legacy json exists).",
       "id": "config_manager_rationale_25"
     },
@@ -5345,7 +5372,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L29",
-      "community": 10,
+      "community": 9,
       "norm_label": "save gemini api key to .env and remove from legacy json.",
       "id": "config_manager_rationale_29"
     },
@@ -5354,7 +5381,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L42",
-      "community": 10,
+      "community": 9,
       "norm_label": "save os system preference to .env.",
       "id": "config_manager_rationale_42"
     },
@@ -5363,7 +5390,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L49",
-      "community": 10,
+      "community": 9,
       "norm_label": "remove a specific key from api_keys.json if it exists.",
       "id": "config_manager_rationale_49"
     },
@@ -5372,7 +5399,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L63",
-      "community": 10,
+      "community": 9,
       "norm_label": "get a value from legacy config or environment.",
       "id": "config_manager_rationale_63"
     },
@@ -5381,7 +5408,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L79",
-      "community": 10,
+      "community": 9,
       "norm_label": "save a value to legacy config (non-secret).",
       "id": "config_manager_rationale_79"
     },
@@ -5390,7 +5417,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L91",
-      "community": 4,
+      "community": 3,
       "norm_label": "centralized getter for gemini api key.",
       "id": "config_manager_rationale_91"
     },
@@ -5408,7 +5435,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\memory\\config_manager.py",
       "source_location": "L132",
-      "community": 10,
+      "community": 9,
       "norm_label": "determine if the core configuration is complete.",
       "id": "config_manager_rationale_132"
     },
@@ -5418,7 +5445,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L1",
       "id": "e_jarvis_mk37_memory_memory_manager_py",
-      "community": 14,
+      "community": 13,
       "norm_label": "memory_manager.py"
     },
     {
@@ -5427,7 +5454,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L8",
       "id": "memory_manager_get_base_dir",
-      "community": 14,
+      "community": 13,
       "norm_label": "get_base_dir()"
     },
     {
@@ -5436,7 +5463,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L20",
       "id": "memory_manager_empty_memory",
-      "community": 14,
+      "community": 13,
       "norm_label": "_empty_memory()"
     },
     {
@@ -5445,7 +5472,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L30",
       "id": "memory_manager_load_memory",
-      "community": 14,
+      "community": 13,
       "norm_label": "load_memory()"
     },
     {
@@ -5454,7 +5481,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L47",
       "id": "memory_manager_all_entries",
-      "community": 14,
+      "community": 13,
       "norm_label": "_all_entries()"
     },
     {
@@ -5463,7 +5490,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L58",
       "id": "memory_manager_trim_to_limit",
-      "community": 14,
+      "community": 13,
       "norm_label": "_trim_to_limit()"
     },
     {
@@ -5472,7 +5499,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L70",
       "id": "memory_manager_save_memory",
-      "community": 14,
+      "community": 13,
       "norm_label": "save_memory()"
     },
     {
@@ -5481,7 +5508,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L82",
       "id": "memory_manager_truncate_value",
-      "community": 14,
+      "community": 13,
       "norm_label": "_truncate_value()"
     },
     {
@@ -5490,7 +5517,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L88",
       "id": "memory_manager_recursive_update",
-      "community": 14,
+      "community": 13,
       "norm_label": "_recursive_update()"
     },
     {
@@ -5499,7 +5526,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L111",
       "id": "memory_manager_update_memory",
-      "community": 14,
+      "community": 13,
       "norm_label": "update_memory()"
     },
     {
@@ -5517,7 +5544,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L196",
       "id": "memory_manager_remember",
-      "community": 14,
+      "community": 13,
       "norm_label": "remember()"
     },
     {
@@ -5526,7 +5553,7 @@
       "source_file": "E:\\Jarvis-MK37\\memory\\memory_manager.py",
       "source_location": "L204",
       "id": "memory_manager_forget",
-      "community": 14,
+      "community": 13,
       "norm_label": "forget()"
     },
     {
@@ -5537,6 +5564,24 @@
       "id": "e_jarvis_mk37_memory_init_py",
       "community": 17,
       "norm_label": "__init__.py"
+    },
+    {
+      "label": "Runs the camera in a background thread.     Pushes frames to JarvisUI for visual",
+      "file_type": "rationale",
+      "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
+      "source_location": "L22",
+      "community": 18,
+      "norm_label": "runs the camera in a background thread.     pushes frames to jarvisui for visual",
+      "id": "vision_manager_rationale_22"
+    },
+    {
+      "label": "Returns the most recent camera frame as JPEG bytes, or None.",
+      "file_type": "rationale",
+      "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
+      "source_location": "L39",
+      "community": 19,
+      "norm_label": "returns the most recent camera frame as jpeg bytes, or none.",
+      "id": "vision_manager_rationale_39"
     },
     {
       "label": "Gemini'nin \u00fcretti\u011fi <ctrlXX> artefaktlar\u0131n\u0131 ve kontrol karakterlerini temizler.",
@@ -5552,7 +5597,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L109",
-      "community": 18,
+      "community": 20,
       "norm_label": "drop-in replacement for tk.tk() \u2014 gives main.py a `.mainloop()` call.",
       "id": "ui_rationale_109"
     },
@@ -5561,7 +5606,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L161",
-      "community": 19,
+      "community": 21,
       "norm_label": "true 3d volumetric orbital globe with y-axis rotation and perspective projection",
       "id": "ui_rationale_161"
     },
@@ -5570,7 +5615,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L190",
-      "community": 20,
+      "community": 22,
       "norm_label": "pre-generate the multi-axial 'cage' geometry.",
       "id": "ui_rationale_190"
     },
@@ -5579,7 +5624,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L446",
-      "community": 21,
+      "community": 23,
       "norm_label": "circular hud loader inspired by the 'atlas' reference image.     features rotat",
       "id": "ui_rationale_446"
     },
@@ -5588,7 +5633,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L584",
-      "community": 22,
+      "community": 24,
       "norm_label": "audio-level bars that pulse when jarvis is speaking.",
       "id": "ui_rationale_584"
     },
@@ -5597,7 +5642,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L886",
-      "community": 23,
+      "community": 25,
       "norm_label": "scrollable chat log with typewriter effect \u2014 mirrors original log_text.",
       "id": "ui_rationale_886"
     },
@@ -5606,7 +5651,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L938",
-      "community": 24,
+      "community": 26,
       "norm_label": "add a styled chat bubble to the layout.",
       "id": "ui_rationale_938"
     },
@@ -5615,7 +5660,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L990",
-      "community": 25,
+      "community": 27,
       "norm_label": "append text to the last bubble if it belongs to the same tag, or create new.",
       "id": "ui_rationale_990"
     },
@@ -5624,7 +5669,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1081",
-      "community": 26,
+      "community": 28,
       "norm_label": "update display with a new bgr frame (from opencv).",
       "id": "ui_rationale_1081"
     },
@@ -5633,7 +5678,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1553",
-      "community": 27,
+      "community": 29,
       "norm_label": "complete pyqt6 implementation of j.a.r.v.i.s.     \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
       "id": "ui_rationale_1553"
     },
@@ -5642,7 +5687,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1835",
-      "community": 28,
+      "community": 30,
       "norm_label": "thread-safe \u2014 callable from any thread.",
       "id": "ui_rationale_1835"
     },
@@ -5651,7 +5696,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1867",
-      "community": 29,
+      "community": 31,
       "norm_label": "thread-safe signal to finish boot sequence.",
       "id": "ui_rationale_1867"
     },
@@ -5660,7 +5705,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1871",
-      "community": 30,
+      "community": 32,
       "norm_label": "perform the actual ui transition on the main thread.",
       "id": "ui_rationale_1871"
     },
@@ -5669,7 +5714,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1888",
-      "community": 31,
+      "community": 33,
       "norm_label": "thread-safe \u2014 adds a new log entry with typewriter effect.",
       "id": "ui_rationale_1888"
     },
@@ -5678,7 +5723,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1897",
-      "community": 32,
+      "community": 34,
       "norm_label": "thread-safe \u2014 appends text to the last bubble immediately.",
       "id": "ui_rationale_1897"
     },
@@ -5687,7 +5732,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1922",
-      "community": 33,
+      "community": 35,
       "norm_label": "handle global ui hotkeys.",
       "id": "ui_rationale_1922"
     },
@@ -5696,7 +5741,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L1948",
-      "community": 34,
+      "community": 36,
       "norm_label": "called by inputbarwidget.submitted signal.",
       "id": "ui_rationale_1948"
     },
@@ -5705,7 +5750,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2007",
-      "community": 35,
+      "community": 37,
       "norm_label": "thread-safe camera frame update.",
       "id": "ui_rationale_2007"
     },
@@ -5714,7 +5759,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\ui.py",
       "source_location": "L2014",
-      "community": 36,
+      "community": 38,
       "norm_label": "thread-safe gesture callback \u2014 called by visionmanager.",
       "id": "ui_rationale_2014"
     },
@@ -5723,7 +5768,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L115",
-      "community": 37,
+      "community": 39,
       "norm_label": "read identity fields from long-term memory.",
       "id": "computer_control_rationale_115"
     },
@@ -5732,7 +5777,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L331",
-      "community": 38,
+      "community": 40,
       "norm_label": "dispatch table for all computer control actions.      parameters keys (all opt",
       "id": "computer_control_rationale_331"
     },
@@ -5750,7 +5795,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\test.py",
       "source_location": "L19",
-      "community": 39,
+      "community": 41,
       "norm_label": "jarvis digital fragment globe.     hundreds of short, thin data arcs forming a v",
       "id": "test_rationale_19"
     },
@@ -5759,7 +5804,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L120",
-      "community": 40,
+      "community": 42,
       "norm_label": "read identity fields from long-term memory.",
       "id": "computer_control_rationale_120"
     },
@@ -5768,7 +5813,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_control.py",
       "source_location": "L336",
-      "community": 41,
+      "community": 43,
       "norm_label": "dispatch table for all computer control actions.      parameters keys (all opt",
       "id": "computer_control_rationale_336"
     },
@@ -5777,7 +5822,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\actions\\file_controller.py",
       "source_location": "L20",
-      "community": 42,
+      "community": 44,
       "norm_label": "verilen path _safe_roots icinde mi? degilse islemi reddet.",
       "id": "file_controller_rationale_20"
     },
@@ -5786,7 +5831,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
       "source_location": "L95",
-      "community": 43,
+      "community": 45,
       "norm_label": "thin wrapper that works with whichever mediapipe api is available.",
       "id": "vision_manager_rationale_95"
     },
@@ -5795,7 +5840,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
       "source_location": "L153",
-      "community": 44,
+      "community": 46,
       "norm_label": "returns list-of-landmark-lists (one per hand) or [].",
       "id": "vision_manager_rationale_153"
     },
@@ -5804,7 +5849,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
       "source_location": "L174",
-      "community": 45,
+      "community": 47,
       "norm_label": "draw hand skeleton overlay (legacy api only).",
       "id": "vision_manager_rationale_174"
     },
@@ -5813,7 +5858,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
       "source_location": "L197",
-      "community": 46,
+      "community": 48,
       "norm_label": "runs the camera in a background thread.     pushes frames to jarvisui and dispa",
       "id": "vision_manager_rationale_197"
     },
@@ -5822,7 +5867,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
       "source_location": "L232",
-      "community": 47,
+      "community": 49,
       "norm_label": "returns the most recent camera frame as jpeg bytes, or none.",
       "id": "vision_manager_rationale_232"
     },
@@ -5831,7 +5876,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
       "source_location": "L324",
-      "community": 48,
+      "community": 50,
       "norm_label": "require the same gesture for confirm_frames consecutive frames.         also en",
       "id": "vision_manager_rationale_324"
     },
@@ -5840,7 +5885,7 @@
       "file_type": "rationale",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
       "source_location": "L410",
-      "community": 49,
+      "community": 51,
       "norm_label": "create, start, and return a visionmanager.",
       "id": "vision_manager_rationale_410"
     }
@@ -5922,7 +5967,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L934",
+      "source_location": "L960",
       "weight": 1.0,
       "_src": "e_jarvis_mk37_main_py",
       "_tgt": "main_main",
@@ -5946,7 +5991,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L545",
+      "source_location": "L571",
       "weight": 1.0,
       "_src": "main_jarvislive_build_config",
       "_tgt": "main_load_system_prompt",
@@ -5958,7 +6003,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L783",
+      "source_location": "L809",
       "weight": 1.0,
       "_src": "main_jarvislive_receive_audio",
       "_tgt": "main_clean_transcript",
@@ -5997,6 +6042,18 @@
       "source_location": "L489",
       "weight": 1.0,
       "_src": "main_jarvislive",
+      "_tgt": "main_jarvislive_interrupt",
+      "source": "main_jarvislive",
+      "target": "main_jarvislive_interrupt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "E:\\Jarvis-MK37\\main.py",
+      "source_location": "L515",
+      "weight": 1.0,
+      "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_on_action_triggered",
       "source": "main_jarvislive",
       "target": "main_jarvislive_on_action_triggered",
@@ -6006,7 +6063,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L505",
+      "source_location": "L531",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_on_text_command",
@@ -6018,7 +6075,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L516",
+      "source_location": "L542",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_set_speaking",
@@ -6030,7 +6087,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L524",
+      "source_location": "L550",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_speak",
@@ -6042,7 +6099,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L535",
+      "source_location": "L561",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_speak_error",
@@ -6054,7 +6111,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L540",
+      "source_location": "L566",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_build_config",
@@ -6066,7 +6123,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L576",
+      "source_location": "L602",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_execute_tool",
@@ -6078,7 +6135,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L717",
+      "source_location": "L743",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_send_realtime",
@@ -6090,7 +6147,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L722",
+      "source_location": "L748",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_send_video_frames",
@@ -6102,7 +6159,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L735",
+      "source_location": "L761",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_listen_audio",
@@ -6114,7 +6171,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L764",
+      "source_location": "L790",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_receive_audio",
@@ -6126,7 +6183,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L823",
+      "source_location": "L849",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_play_audio",
@@ -6138,7 +6195,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L862",
+      "source_location": "L888",
       "weight": 1.0,
       "_src": "main_jarvislive",
       "_tgt": "main_jarvislive_run",
@@ -6171,10 +6228,22 @@
       "target": "task_queue_taskpriority"
     },
     {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "E:\\Jarvis-MK37\\main.py",
+      "source_location": "L490",
+      "weight": 1.0,
+      "_src": "main_rationale_490",
+      "_tgt": "main_jarvislive_interrupt",
+      "source": "main_jarvislive_interrupt",
+      "target": "main_rationale_490",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L501",
+      "source_location": "L527",
       "weight": 1.0,
       "_src": "main_jarvislive_on_action_triggered",
       "_tgt": "main_jarvislive_execute_tool",
@@ -6186,19 +6255,19 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L490",
+      "source_location": "L516",
       "weight": 1.0,
-      "_src": "main_rationale_490",
+      "_src": "main_rationale_516",
       "_tgt": "main_jarvislive_on_action_triggered",
       "source": "main_jarvislive_on_action_triggered",
-      "target": "main_rationale_490",
+      "target": "main_rationale_516",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L847",
+      "source_location": "L873",
       "weight": 1.0,
       "_src": "main_jarvislive_play_audio",
       "_tgt": "main_jarvislive_set_speaking",
@@ -6210,7 +6279,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L928",
+      "source_location": "L954",
       "weight": 1.0,
       "_src": "main_jarvislive_run",
       "_tgt": "main_jarvislive_set_speaking",
@@ -6234,7 +6303,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L538",
+      "source_location": "L564",
       "weight": 1.0,
       "_src": "main_jarvislive_speak_error",
       "_tgt": "main_jarvislive_speak",
@@ -6246,7 +6315,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L693",
+      "source_location": "L719",
       "weight": 1.0,
       "_src": "main_jarvislive_execute_tool",
       "_tgt": "main_jarvislive_speak",
@@ -6390,7 +6459,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L706",
+      "source_location": "L732",
       "weight": 1.0,
       "_src": "main_jarvislive_execute_tool",
       "_tgt": "main_jarvislive_speak_error",
@@ -6414,7 +6483,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L872",
+      "source_location": "L898",
       "weight": 1.0,
       "_src": "main_jarvislive_run",
       "_tgt": "main_jarvislive_build_config",
@@ -6450,7 +6519,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L803",
+      "source_location": "L829",
       "weight": 1.0,
       "_src": "main_jarvislive_receive_audio",
       "_tgt": "main_jarvislive_execute_tool",
@@ -6750,7 +6819,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L888",
+      "source_location": "L914",
       "weight": 1.0,
       "_src": "main_jarvislive_run",
       "_tgt": "main_jarvislive_send_realtime",
@@ -6774,7 +6843,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L890",
+      "source_location": "L916",
       "weight": 1.0,
       "_src": "main_jarvislive_run",
       "_tgt": "main_jarvislive_send_video_frames",
@@ -6798,7 +6867,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L889",
+      "source_location": "L915",
       "weight": 1.0,
       "_src": "main_jarvislive_run",
       "_tgt": "main_jarvislive_listen_audio",
@@ -6810,7 +6879,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L891",
+      "source_location": "L917",
       "weight": 1.0,
       "_src": "main_jarvislive_run",
       "_tgt": "main_jarvislive_receive_audio",
@@ -6834,7 +6903,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\main.py",
-      "source_location": "L892",
+      "source_location": "L918",
       "weight": 1.0,
       "_src": "main_jarvislive_run",
       "_tgt": "main_jarvislive_play_audio",
@@ -6994,9 +7063,9 @@
       "weight": 0.8,
       "_src": "main_rationale_110",
       "_tgt": "ui_jarvisui",
+      "confidence_score": 0.5,
       "source": "main_rationale_110",
-      "target": "ui_jarvisui",
-      "confidence_score": 0.5
+      "target": "ui_jarvisui"
     },
     {
       "relation": "uses",
@@ -7006,9 +7075,9 @@
       "weight": 0.8,
       "_src": "main_rationale_110",
       "_tgt": "task_queue_taskpriority",
+      "confidence_score": 0.5,
       "source": "main_rationale_110",
-      "target": "task_queue_taskpriority",
-      "confidence_score": 0.5
+      "target": "task_queue_taskpriority"
     },
     {
       "relation": "uses",
@@ -7018,9 +7087,9 @@
       "weight": 0.8,
       "_src": "main_rationale_490",
       "_tgt": "ui_jarvisui",
+      "confidence_score": 0.5,
       "source": "main_rationale_490",
-      "target": "ui_jarvisui",
-      "confidence_score": 0.5
+      "target": "ui_jarvisui"
     },
     {
       "relation": "uses",
@@ -7030,9 +7099,33 @@
       "weight": 0.8,
       "_src": "main_rationale_490",
       "_tgt": "task_queue_taskpriority",
+      "confidence_score": 0.5,
       "source": "main_rationale_490",
-      "target": "task_queue_taskpriority",
-      "confidence_score": 0.5
+      "target": "task_queue_taskpriority"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "E:\\Jarvis-MK37\\main.py",
+      "source_location": "L53",
+      "weight": 0.8,
+      "_src": "main_rationale_516",
+      "_tgt": "ui_jarvisui",
+      "confidence_score": 0.5,
+      "source": "main_rationale_516",
+      "target": "ui_jarvisui"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "E:\\Jarvis-MK37\\main.py",
+      "source_location": "L685",
+      "weight": 0.8,
+      "_src": "main_rationale_516",
+      "_tgt": "task_queue_taskpriority",
+      "confidence_score": 0.5,
+      "source": "main_rationale_516",
+      "target": "task_queue_taskpriority"
     },
     {
       "relation": "contains",
@@ -8649,8 +8742,8 @@
       "source_file": "E:\\Jarvis-MK37\\update_icons.py",
       "source_location": "L34",
       "weight": 1.0,
-      "_src": "update_icons_update_icons",
-      "_tgt": "ui_streamredirector_write",
+      "_src": "ui_streamredirector_write",
+      "_tgt": "update_icons_update_icons",
       "source": "ui_streamredirector_write",
       "target": "update_icons_update_icons"
     },
@@ -8661,8 +8754,8 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\computer_settings.py",
       "source_location": "L344",
       "weight": 1.0,
-      "_src": "computer_settings_type_text",
-      "_tgt": "ui_streamredirector_write",
+      "_src": "ui_streamredirector_write",
+      "_tgt": "computer_settings_type_text",
       "source": "ui_streamredirector_write",
       "target": "computer_settings_type_text"
     },
@@ -8673,8 +8766,8 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\file_controller.py",
       "source_location": "L287",
       "weight": 1.0,
-      "_src": "file_controller_write_file",
-      "_tgt": "ui_streamredirector_write",
+      "_src": "ui_streamredirector_write",
+      "_tgt": "file_controller_write_file",
       "source": "ui_streamredirector_write",
       "target": "file_controller_write_file"
     },
@@ -8685,8 +8778,8 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\open_app.py",
       "source_location": "L115",
       "weight": 1.0,
-      "_src": "open_app_launch_windows",
-      "_tgt": "ui_streamredirector_write",
+      "_src": "ui_streamredirector_write",
+      "_tgt": "open_app_launch_windows",
       "source": "ui_streamredirector_write",
       "target": "open_app_launch_windows"
     },
@@ -8697,8 +8790,8 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\open_app.py",
       "source_location": "L167",
       "weight": 1.0,
-      "_src": "open_app_launch_macos",
-      "_tgt": "ui_streamredirector_write",
+      "_src": "ui_streamredirector_write",
+      "_tgt": "open_app_launch_macos",
       "source": "ui_streamredirector_write",
       "target": "open_app_launch_macos"
     },
@@ -8709,8 +8802,8 @@
       "source_file": "E:\\Jarvis-MK37\\actions\\send_message.py",
       "source_location": "L44",
       "weight": 1.0,
-      "_src": "send_message_paste_text",
-      "_tgt": "ui_streamredirector_write",
+      "_src": "ui_streamredirector_write",
+      "_tgt": "send_message_paste_text",
       "source": "ui_streamredirector_write",
       "target": "send_message_paste_text"
     },
@@ -8721,8 +8814,8 @@
       "source_file": "E:\\Jarvis-MK37\\agent\\executor.py",
       "source_location": "L66",
       "weight": 1.0,
-      "_src": "executor_run_generated_code",
-      "_tgt": "ui_streamredirector_write",
+      "_src": "ui_streamredirector_write",
+      "_tgt": "executor_run_generated_code",
       "source": "ui_streamredirector_write",
       "target": "executor_run_generated_code"
     },
@@ -10016,8 +10109,8 @@
       "source_file": "E:\\Jarvis-MK37\\main.py",
       "source_location": "L45",
       "weight": 0.8,
-      "_src": "main_rationale_102",
-      "_tgt": "ui_jarvisui",
+      "_src": "ui_jarvisui",
+      "_tgt": "main_rationale_102",
       "confidence_score": 0.5,
       "source": "ui_jarvisui",
       "target": "main_rationale_102"
@@ -10729,6 +10822,18 @@
       "source": "ui_jarvisui_on_gesture_detected",
       "target": "ui_rationale_2109",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
+      "source_location": "L164",
+      "weight": 1.0,
+      "_src": "ui_jarvisui_on_gesture_detected",
+      "_tgt": "vision_manager_visionmanager_process_gestures",
+      "source": "ui_jarvisui_on_gesture_detected",
+      "target": "vision_manager_visionmanager_process_gestures"
     },
     {
       "relation": "calls",
@@ -22220,8 +22325,8 @@
       "source_file": "E:\\Jarvis-MK37\\main.py",
       "source_location": "L620",
       "weight": 0.8,
-      "_src": "main_rationale_102",
-      "_tgt": "task_queue_taskpriority",
+      "_src": "task_queue_taskpriority",
+      "_tgt": "main_rationale_102",
       "confidence_score": 0.5,
       "source": "task_queue_taskpriority",
       "target": "main_rationale_102"
@@ -22734,7 +22839,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L21",
+      "source_location": "L24",
       "weight": 1.0,
       "_src": "e_jarvis_mk37_core_vision_manager_py",
       "_tgt": "vision_manager_visionmanager",
@@ -22746,7 +22851,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L134",
+      "source_location": "L195",
       "weight": 1.0,
       "_src": "e_jarvis_mk37_core_vision_manager_py",
       "_tgt": "vision_manager_start_vision",
@@ -22770,7 +22875,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L27",
+      "source_location": "L30",
       "weight": 1.0,
       "_src": "vision_manager_visionmanager",
       "_tgt": "vision_manager_visionmanager_init",
@@ -22782,7 +22887,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L38",
+      "source_location": "L56",
       "weight": 1.0,
       "_src": "vision_manager_visionmanager",
       "_tgt": "vision_manager_visionmanager_get_latest_jpeg",
@@ -22794,7 +22899,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L43",
+      "source_location": "L61",
       "weight": 1.0,
       "_src": "vision_manager_visionmanager",
       "_tgt": "vision_manager_visionmanager_start",
@@ -22806,7 +22911,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L55",
+      "source_location": "L73",
       "weight": 1.0,
       "_src": "vision_manager_visionmanager",
       "_tgt": "vision_manager_visionmanager_stop",
@@ -22818,7 +22923,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L61",
+      "source_location": "L79",
       "weight": 1.0,
       "_src": "vision_manager_visionmanager",
       "_tgt": "vision_manager_visionmanager_run_loop",
@@ -22830,7 +22935,19 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L110",
+      "source_location": "L132",
+      "weight": 1.0,
+      "_src": "vision_manager_visionmanager",
+      "_tgt": "vision_manager_visionmanager_process_gestures",
+      "source": "vision_manager_visionmanager",
+      "target": "vision_manager_visionmanager_process_gestures",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
+      "source_location": "L171",
       "weight": 1.0,
       "_src": "vision_manager_visionmanager",
       "_tgt": "vision_manager_visionmanager_open_camera",
@@ -22842,7 +22959,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L135",
+      "source_location": "L196",
       "weight": 1.0,
       "_src": "vision_manager_start_vision",
       "_tgt": "vision_manager_visionmanager",
@@ -22854,31 +22971,31 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L22",
+      "source_location": "L25",
       "weight": 1.0,
-      "_src": "vision_manager_rationale_22",
+      "_src": "vision_manager_rationale_25",
       "_tgt": "vision_manager_visionmanager",
       "source": "vision_manager_visionmanager",
-      "target": "vision_manager_rationale_22",
+      "target": "vision_manager_rationale_25",
       "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L39",
+      "source_location": "L57",
       "weight": 1.0,
-      "_src": "vision_manager_rationale_39",
+      "_src": "vision_manager_rationale_57",
       "_tgt": "vision_manager_visionmanager_get_latest_jpeg",
       "source": "vision_manager_visionmanager_get_latest_jpeg",
-      "target": "vision_manager_rationale_39",
+      "target": "vision_manager_rationale_57",
       "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L136",
+      "source_location": "L197",
       "weight": 1.0,
       "_src": "vision_manager_start_vision",
       "_tgt": "vision_manager_visionmanager_start",
@@ -22890,12 +23007,24 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
-      "source_location": "L66",
+      "source_location": "L84",
       "weight": 1.0,
       "_src": "vision_manager_visionmanager_run_loop",
       "_tgt": "vision_manager_visionmanager_open_camera",
       "source": "vision_manager_visionmanager_run_loop",
       "target": "vision_manager_visionmanager_open_camera",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "E:\\Jarvis-MK37\\core\\vision_manager.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "_src": "vision_manager_visionmanager_run_loop",
+      "_tgt": "vision_manager_visionmanager_process_gestures",
+      "source": "vision_manager_visionmanager_run_loop",
+      "target": "vision_manager_visionmanager_process_gestures",
       "confidence_score": 1.0
     },
     {
