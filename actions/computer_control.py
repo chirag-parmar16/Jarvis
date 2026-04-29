@@ -30,23 +30,18 @@ def _get_os() -> str:
 def _get_api_key() -> str:
     return config_manager.get_gemini_key() or ""
 
-_SAFE_SCREENSHOT_ROOTS = (
-    Path.home(),
-)
-
 def _safe_screenshot_path(requested: str | None) -> Path:
     fallback = Path.home() / "Desktop" / "jarvis_screenshot.png"
     if not requested:
         return fallback
     try:
         p = Path(requested).expanduser().resolve()
-        for root in _SAFE_SCREENSHOT_ROOTS:
-            if p.is_relative_to(root.resolve()):
-                p.parent.mkdir(parents=True, exist_ok=True)
-                return p
+        p.parent.mkdir(parents=True, exist_ok=True)
+        return p
     except Exception:
         pass
     return fallback
+
 
 def _require_pyautogui():
     if not _PYAUTOGUI:

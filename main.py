@@ -6,6 +6,26 @@ import sys
 import traceback
 from pathlib import Path
 
+import ctypes
+import os
+
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+def run_as_admin():
+    if is_admin():
+        return True
+    
+    # Relaunch the program with admin rights
+    print("[SYS] Requesting elevated privileges...")
+    ctypes.windll.shell32.ShellExecuteW(
+        None, "runas", sys.executable, " ".join(sys.argv), None, 1
+    )
+    sys.exit(0)
+
 # Ensure UTF-8 stdout so emoji in print() don't crash on Windows terminals
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
     try:
@@ -13,6 +33,11 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     except Exception:
         pass
+
+# Elevation check for Windows
+if os.name == "nt":
+    run_as_admin()
+
 
 import sounddevice as sd
 from google import genai
