@@ -10,8 +10,8 @@ from pathlib import Path
 
 try:
     import pyautogui
-    pyautogui.FAILSAFE = True
-    pyautogui.PAUSE    = 0.05
+    pyautogui.FAILSAFE = False
+    pyautogui.PAUSE    = 0.1
     _PYAUTOGUI = True
 except ImportError:
     _PYAUTOGUI = False

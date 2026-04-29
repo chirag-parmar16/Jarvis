@@ -22,6 +22,7 @@ import subprocess
 import threading
 from pathlib import Path
 from typing import Optional
+from urllib.parse import urlparse
 
 from playwright.async_api import (
     async_playwright,
@@ -531,34 +532,47 @@ class _BrowserSession:
 
     # ── Sayfa erişimi ─────────────────────────────────────────────────────────
 
-    async def _get_page(self) -> Page:
-        # Check if we are in setup mode (DASHBOARD_URL is the target)
-        # We can detect this if the caller is the 'setup' action but _launch is handled at session level.
-        # Let's just make _launch smarter.
+    async def _get_page(self, target_url: str = None) -> tuple[Page, bool]:
+        """Returns (page, is_new_tab)"""
         await self._launch()
         if self._context is None:
             raise RuntimeError("Browser context initialization failed.")
 
+        # Tab Awareness: If target_url provided, check if it's already open
+        if target_url:
+            domain = urlparse(target_url).netloc.lower().replace("www.", "")
+            for p in self._context.pages:
+                if not p.is_closed() and domain in p.url.lower():
+                    try:
+                        self._page = p
+                        await p.bring_to_front()
+                        return p, False
+                    except: pass
+
         # Ensure we have a valid page
+        is_new = False
         if self._page is None or self._page.is_closed():
             pages = self._context.pages
             if pages:
                 self._page = pages[-1]
             else:
                 self._page = await self._context.new_page()
+                is_new = True
+        
+        # ... (blank page handling below)
 
         # If page is blank, force load the dashboard
         curr_url = self._page.url
         if curr_url in ("about:blank", "", "about:newtab"):
+            is_new = True
             try:
-                # Use absolute path with file:/// properly for Windows
                 target = DASHBOARD_URL
                 print(f"[Browser] Redirecting blank tab to Identity Dashboard...")
                 await self._page.goto(target, timeout=15000)
             except Exception as e:
                 print(f"[Browser] Dashboard load error: {e}")
         
-        return self._page
+        return self._page, is_new
 
 
     # ── Action'lar ────────────────────────────────────────────────────────────
@@ -567,18 +581,18 @@ class _BrowserSession:
         """
         Navigate to a URL.
         When _also_open_in_real is True (Chrome was already running),
-        ALSO opens the URL in the user's real Chrome via webbrowser.open().
-        Playwright navigation runs in the dedicated JARVIS profile window.
+        ALSO opens the URL in the user's real Chrome via webbrowser.open() 
+        ONLY if it's a new request/tab.
         """
         url = _normalize_url(url)
+        page, is_new = await self._get_page(target_url=url)
 
-        # Also send to the user's real Chrome if it was already running
-        if self._also_open_in_real:
-            import webbrowser
-            webbrowser.open(url)
-
-        page     = await self._get_page(target_url=url)
-        prev_url = page.url
+        # Also send to the user's real Chrome if it was already running AND it's a new request
+        if self._also_open_in_real and is_new:
+            try:
+                import webbrowser
+                webbrowser.open(url)
+            except: pass
 
         async def _do_goto(p: Page) -> str:
             """Attempt navigation and return the resulting URL (may still be blank)."""

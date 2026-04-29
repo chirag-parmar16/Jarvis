@@ -970,6 +970,7 @@ class ChatWidget(QWidget):
         lay.addWidget(sender_lbl)
 
         msg_lbl = QLabel()
+        msg_lbl.setObjectName("chat_msg_label")
         msg_lbl.setFont(QFont("Courier New", 9))
         msg_lbl.setStyleSheet(f"color: {col}; background: {bg}; border-radius: 4px; padding: 4px 6px;")
         msg_lbl.setWordWrap(True)
@@ -999,20 +1000,19 @@ class ChatWidget(QWidget):
             content = text
 
         # Find last bubble with same tag
-        # self._msg_lay.count() - 1 is the stretch.
-        # So last real widget is self._msg_lay.count() - 2
         last_idx = self._msg_lay.count() - 2
         if last_idx >= 0:
             last_item = self._msg_lay.itemAt(last_idx)
             if last_item and last_item.widget():
                 last_bubble = last_item.widget()
-                # Store tag metadata in the widget
                 if getattr(last_bubble, "_tag", None) == tag:
                     # Update existing label
-                    msg_lbl = last_bubble.findChild(QLabel)
+                    msg_lbl = last_bubble.findChild(QLabel, "chat_msg_label")
                     if msg_lbl:
                         current = msg_lbl.text()
-                        msg_lbl.setText(current + " " + content if current else content)
+                        # Smart spacing: only add space if current is not empty and content doesn't start with space/punctuation
+                        divider = " " if current and content and not content[0].isspace() and content[0] not in ".,!?;:" else ""
+                        msg_lbl.setText(current + divider + content if current else content)
                         # Scroll to bottom
                         QTimer.singleShot(20, lambda: self._scroll.verticalScrollBar().setValue(
                             self._scroll.verticalScrollBar().maximum()))
